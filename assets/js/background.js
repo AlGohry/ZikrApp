@@ -119,10 +119,9 @@ if (localStorage.userSettings) {
 
 
 
-                        // ----------------------------------- This Code I Must Re-Read It -----------------------------------
+                        // ----------------------------------- ------------------- -----------------------------------
                         // next code will check progress every 50 millisecons to know if it's buffering or not
-                        // tnis code i have copied it from stackoverflow and i still not understand it completely
-                        // link to question at stackoverflow https://goo.gl/8bsZB1
+                        // tnis code i have copied it from stackoverflow (https://goo.gl/8bsZB1) 
                         var checkInterval = 50.0,
                             lastPlayPos = 0,
                             currentPlayPos = 0,
@@ -154,7 +153,7 @@ if (localStorage.userSettings) {
                             }
                             lastPlayPos = currentPlayPos;
                         }
-                        // ----------------------------------- / This Code I Must Re-Read It -----------------------------------
+                        // ----------------------------------- / ----------------------- -----------------------------------
 
                         // if connection port closed (popup closed)
                         port.onDisconnect.addListener(function() {

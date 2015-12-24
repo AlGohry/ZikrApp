@@ -12,6 +12,10 @@ just fork it and check this link https://developer.chrome.com/extensions/getstar
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
 
+## Chrome Extension Page
+
+https://goo.gl/88QkAE
+
 ## Facebook 
 
 https://facebook.com/ZikrApp

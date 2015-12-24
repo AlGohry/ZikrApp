@@ -1,0 +1,102 @@
+<div id="translatedPages">
+    <script id="settingsPage" type="x-jquery-tmpl">
+        <div class="page settings-page newUser">
+            <div class="page-head">
+                <h3><i class="fa fa-cog pageIcon"></i> ${settings_title}</h3>
+                <div class="exit">
+                    <div class="save inActive-shekh inActive-lang inActive-sort">
+                        <i class="fa fa-check"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="page-content">
+                <div id="wrap">
+                    <div class="setting-row" id="reader-row">
+                        <div class="option-label">
+                            <div class="label-icon">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <div class="label-text">
+                                ${settings_reader_title} <span class="explain">/ ${settings_reader_ex}</span>
+                            </div>
+                        </div>
+                        <div class="mSelect">
+                            <div class="current" value="${curr_reader_src}">
+                                <div class="reader-item">
+                                    <img class="reader-avatar" src="${curr_reader_img}" alt="">
+                                    <div class="reader-info">
+                                        <p class="reader-name">${curr_reader_name}</p>
+                                        <p class="reader-country">${curr_reader_country}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="options">
+                                <div class="search" id="readerFilter" target-db="#reader-row .item">
+                                    <i class="fa fa-search"></i>
+                                    <input type="text" placeholder="${searchString}" class="search-input">
+                                </div>
+                                <div class="style-scroll">
+                                    {{each readerItem}}
+                                    <div class="item ${$value['selected']}" value="${$value['key']}">
+                                        <div class="reader-item">
+                                            <img class="reader-avatar" src="${$value['img']}" alt="">
+                                            <div class="reader-info">
+                                                <p class="reader-name">${$value['name']}</p>
+                                                <p class="reader-country">${$value['country']}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div>
+                        <div class="setting-row" id="lang-row">
+                            <div class="option-label">
+                                <div class="label-icon">
+                                    <i class="fa fa-globe"></i>
+                                </div>
+                                <div class="label-text">
+                                    ${settings_lang_title} <span class="explain">/ ${settings_lang_ex}</span>
+                                </div>
+                            </div>
+                            <div class="mSelect">
+                                <div class="current" value="${curr_lang_id}">${curr_lang_name}</div>
+                                <div class="options">
+                                    {{each langItem}}
+                                    <div class="item ${$value['selected']}" value="${$value['id']}">${$value['name']}</div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="setting-row" id="sort-row">
+                            <div class="option-label">
+                                <div class="label-icon">
+                                    <i class="fa fa-th"></i>
+                                </div>
+                                <div class="label-text">
+                                    ${settings_playlist_title} <span class="explain">/ ${settings_playlist_ex}</span>
+                                </div>
+                            </div>
+                            <div class="mSelect">
+                                <div class="current" value="${settings_sort_curr_value}">
+                                    {{html settings_sort_curr_icon}} &nbsp;&nbsp; ${settings_sort_curr_name}
+                                </div>
+                                <div class="options">
+                                    {{each sortItem}}
+                                    <div class="item ${$value['selected']}" value="${$value['value']}">
+                                        {{html $value['icon']}} &nbsp;&nbsp; ${$value['name']}
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+</div>

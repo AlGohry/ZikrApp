@@ -1,0 +1,29 @@
+{
+	"player": {
+		"versesString": "Verses",
+		"searchString": "Search by Surrah name or number .."
+	},
+	"settings": {
+		"title": "Settings",
+		"readerTitle": "Reader",
+		"readerTitleEx": "Choose Your Favorite Reader",
+		"langTitle": "Language",
+		"langTitleEx" : "Choose Your Language",
+		"playlistTitle": "Playlist",
+		"playlistTitleEx": "Choose How Should Playlist Work",
+		"sortAsc": "From Top To Bottom",
+		"sortDesc": "From Bottom To Top",
+		"sortRandom": "Random Playing",
+		"searchString": "Search by reader name or countery .."
+	},
+	"about": {
+		"title": "About App",
+		"appName": "Zikr App",
+		"appDesc": "Zikr app make it easy for you to listen Holy Quran much more faster and easier with a list of readers constantly renewed and possibility of requesting to add your favorite readers, The app is available in two languages Arabic and English with several options to play Quran playlist",
+		"appPartnersText": "In order to listen better and faster i used the following servers",
+		"appContactText": "For suggestions or to report a problem",
+		"partnerText": "Thanks for following sites to provide audio files, May God give them about us and Islam all the best",
+		"updateText": "Update",
+		"facebookText": "Our facebook Page"
+	}
+}

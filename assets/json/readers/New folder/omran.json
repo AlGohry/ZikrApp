@@ -1,0 +1,21 @@
+{
+    "tracks": [{
+        "id": "2",
+        "src": "https://s3.eu-central-1.amazonaws.com/zikrapp/stream/omran/002.mp3"
+    }, {
+        "id": "12",
+        "src": "https://s3.eu-central-1.amazonaws.com/zikrapp/stream/omran/012.mp3"
+    }, {
+        "id": "16",
+        "src": "https://s3.eu-central-1.amazonaws.com/zikrapp/stream/omran/016.mp3"
+    }, {
+        "id": "31",
+        "src": "https://s3.eu-central-1.amazonaws.com/zikrapp/stream/omran/031.mp3"
+    }, {
+        "id": "39",
+        "src": "https://s3.eu-central-1.amazonaws.com/zikrapp/stream/omran/039.mp3"
+    }, {
+        "id": "75",
+        "src": "https://s3.eu-central-1.amazonaws.com/zikrapp/stream/omran/075.mp3"
+    }]
+}

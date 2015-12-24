@@ -1,0 +1,18 @@
+{
+    "tracks": [{
+        "id": "1",
+        "src": "http://audio2.islamweb.net/Quran/FatihSeferagic/001.mp3"
+    }, {
+        "id": "75",
+        "src": "http://audio2.islamweb.net/Quran/FatihSeferagic/075.mp3"
+    }, {
+        "id": "78",
+        "src": "http://audio2.islamweb.net/Quran/FatihSeferagic/078.mp3"
+    }, {
+        "id": "79",
+        "src": "http://audio2.islamweb.net/Quran/FatihSeferagic/079.mp3"
+    }, {
+        "id": "80",
+        "src": "http://audio2.islamweb.net/Quran/FatihSeferagic/080.mp3"
+    }]
+}

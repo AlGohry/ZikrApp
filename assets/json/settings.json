@@ -11,18 +11,18 @@
     "sort": [{
         "name": "asc",
         "icon": "<i class='fa fa-long-arrow-down'></i>",
-        "string_ar": "من الأعلى إلى الأسفل",
-        "string_en": "From Top To Bottom"
+        "string_ar": "تشغيل المصحف من البداية للنهاية",
+        "string_en": "Play Quran from start to end"
     }, {
         "name": "desc",
         "icon": "<i class='fa fa-long-arrow-up'></i>",
-        "string_ar": "من الأسفل للأعلى",
-        "string_en": "From Bottom To Top"
+        "string_ar": "تشغيل المصحف من النهاية للبداية",
+        "string_en": "Play Quran from end to start"
     }, {
         "name": "random",
         "icon": "<i class='fa fa-random'></i>",
-        "string_ar": "تشغيل عشوائى",
-        "string_en": "Random playing"
+        "string_ar": "تشغيل المصحف بشكل عشوائى",
+        "string_en": "Play Quran Randomly"
     }],
     "readers": [{
         "name_en": "Mashary Al-Afassy",

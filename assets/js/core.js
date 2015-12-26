@@ -1,6 +1,6 @@
 /* --------------------------------
 ZikrAPP Extension For Web Browsers
-version: 1.0.1
+version: 2
 -------------------------------- */
 
 
@@ -566,7 +566,7 @@ function runApp() {
                 for (i = 0; i < background.allSettings.sort.length; i++) {
                     sortLoop.push({
                         value: i,
-                        name: background.allSettings.sort[i]['string_' + background.langName],
+                        name: background.allLangData.settings[background.allSettings.sort[i]['name']],
                         icon: background.allSettings.sort[i]['icon'],
                         selected: (i == background.sorting_type_id) ? activeClass : ''
                     });
@@ -594,7 +594,7 @@ function runApp() {
                     settings_playlist_title: background.allLangData.settings.playlistTitle,
                     settings_playlist_ex: background.allLangData.settings.playlistTitleEx,
                     // Sorting
-                    settings_sort_curr_name: background.allSettings.sort[background.sorting_type_id]['string_' + background.langName],
+                    settings_sort_curr_name: background.allLangData.settings[background.sorting_type],
                     settings_sort_curr_value: background.sorting_type_id,
                     settings_sort_curr_icon: background.allSettings.sort[background.sorting_type_id]['icon'],
                     sortItem: sortLoop,

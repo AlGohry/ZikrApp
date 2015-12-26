@@ -11,9 +11,9 @@
 		"langTitleEx" : "Choose Your Language",
 		"playlistTitle": "Playlist",
 		"playlistTitleEx": "Choose How Should Playlist Work",
-		"sortAsc": "From Top To Bottom",
-		"sortDesc": "From Bottom To Top",
-		"sortRandom": "Random Playing",
+		"sortAsc": "Play Quran from start to end",
+		"sortDesc": "Play Quran from end to start",
+		"sortRandom": "Play Quran Randomly",
 		"searchString": "Search by reader name or countery .."
 	},
 	"about": {

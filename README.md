@@ -1,5 +1,10 @@
-# ZikrApp
+# ZikrApp 
+
 Zikr app make it easy for you to listen Holy Quran much more faster and easier with a list of readers constantly renewed
+
+# App Current Version 
+
+Version 2.0
 
 ## Usage
 
@@ -22,4 +27,4 @@ https://facebook.com/ZikrApp
 
 ## Licenes
 
-The content of this project is licensed under the GNU GENERAL PUBLIC LICENSE.
+The content of this project is licensed under the GNU LICENSE.

@@ -808,5 +808,13 @@
         "avatar": "http://zikrapp.s3.amazonaws.com/avatars/omran.jpg",
         "playlist": "http://zikrapp.s3.amazonaws.com/db/readers/omran.json",
         "rating": "3"
+    }, {
+        "name_en": "Abdulrahman Al'ousi",
+        "name_ar": "عبدالرحمن العوسي",
+        "country_en": "Saudi Arabia",
+        "country_ar": "المملكة العربية السعودية",
+        "avatar": "http://zikrapp.s3.amazonaws.com/avatars/3osi.jpg",
+        "playlist": "http://zikrapp.s3.amazonaws.com/db/readers/3osi.json",
+        "rating": "3"
     }]
 }

@@ -1,14 +1,16 @@
 # ZikrApp 
 
-Zikr app make it easy for you to listen Holy Quran much more faster and easier with a list of readers constantly renewed
+Zikr app is an extension for browsers, it enables you to listen to Quran much more easier and faster with long list of readers
 
 # App Current Version 
 
 Version 2.0
 
-## Usage
+## Starting Notes And Usage
 
-just fork it and check this link https://developer.chrome.com/extensions/getstarted#unpacked
+- There's folder to each browser contains all extension assets and basic files like manifest, background and popup.
+- Chrome and opera has a same API so i put them in one folder named Chrome Opera.
+- I will suggest this [url](https://developer.chrome.com/extensions/getstarted) for you if you don't know enough about chrome APIs
 
 ## Contributing
 1. Fork it!
@@ -19,11 +21,11 @@ just fork it and check this link https://developer.chrome.com/extensions/getstar
 
 ## Chrome Extension Page
 
-https://goo.gl/88QkAE
+http://bit.ly/ZikrApp
 
 ## Facebook 
 
-https://facebook.com/ZikrApp
+http://fb.com/ZikrApp
 
 ## Licenes
 

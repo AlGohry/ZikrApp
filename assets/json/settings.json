@@ -816,5 +816,13 @@
         "avatar": "http://zikrapp.s3.amazonaws.com/avatars/3osi.jpg",
         "playlist": "http://zikrapp.s3.amazonaws.com/db/readers/3osi.json",
         "rating": "3"
+    }, {
+        "name_en": "Salman AlOtibi",
+        "name_ar": "سلمان العتيبي",
+        "country_en": "Saudi Arabia",
+        "country_ar": "المملكة العربية السعودية",
+        "avatar": "http://zikrapp.s3.amazonaws.com/avatars/slman.jpg",
+        "playlist": "http://zikrapp.s3.amazonaws.com/db/readers/slman.json",
+        "rating": "3"
     }]
 }

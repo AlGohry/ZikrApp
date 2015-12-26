@@ -19,3 +19,7 @@ https://goo.gl/88QkAE
 ## Facebook 
 
 https://facebook.com/ZikrApp
+
+## Licenes
+
+The content of this project is licensed under the GNU GENERAL PUBLIC LICENSE.

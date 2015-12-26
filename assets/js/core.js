@@ -653,8 +653,9 @@ function runApp() {
                 // Button Next Click Event
                 $(document).on('click', next, function(event) {
                     event.preventDefault();
+                    background.updateSession('' + background.nextSurah + '');
                     makeAnm('next', function() {
-                        background.updateSession('' + background.nextSurah + '');
+                        updateMeta();
                         $(next_meta).find(track_title).html(background.playerInfo[2][1]); // update next track
                         $(next_meta).find(track_author).html(background.playerInfo[2][3] + ' / ' + background.playerInfo[2][4] + ' ' + background.allLangData.player.versesString); // update next track info
                         background.x.src = background.playerInfo[1][2];
@@ -665,8 +666,9 @@ function runApp() {
                 // Button Prev Click Event
                 $(document).on('click', prev, function(event) {
                     event.preventDefault();
+                    background.updateSession('' + background.prevSurah + '');
                     makeAnm('prev', function() {
-                        background.updateSession('' + background.prevSurah + '');
+                        updateMeta();
                         $(prev_meta).find(track_title).html(background.playerInfo[0][1]); // update prev track
                         $(prev_meta).find(track_author).html(background.playerInfo[0][3] + ' / ' + background.playerInfo[0][4] + ' ' + background.allLangData.player.versesString); // update prev track info
                         background.x.src = background.playerInfo[1][2];

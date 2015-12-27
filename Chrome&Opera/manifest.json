@@ -23,7 +23,8 @@
     },
 
     "permissions": [
-        "http://*.amazonaws.com/*"
+        "http://*.amazonaws.com/*",
+        "downloads"
     ],
 
     "author": "Momen Yasser",

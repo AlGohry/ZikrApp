@@ -1,0 +1,29 @@
+{
+	"player": {
+		"versesString": "Ayet",
+		"searchString": "Surenin ismini veya rakamını kullanarak ara"
+	},
+	"settings": {
+		"title": "Ayarlar",
+		"readerTitle": "Okuyucu",
+		"readerTitleEx": "Tercih ettiğin okuyucuyu seç",
+		"langTitle": "Dil",
+		"langTitleEx" : "Dili seç",
+		"playlistTitle": "Oynatma listesi",
+		"playlistTitleEx": "Bir görünüm seçin",
+		"asc": "Play Quran from start to end",
+		"desc": "Play Quran from end to start",
+		"random": "Play Quran Randomly",
+		"searchString": "Search by reader name or countery .."
+	},
+	"about": {
+		"title": "Hakkında",
+		"appName": "Zikr App",
+		"appDesc": "Zikr app make it easy for you to listen Holy Quran much more faster and easier with a list of readers constantly renewed and possibility of requesting to add your favorite readers, The app is available in two languages Arabic and English with several options to play Quran playlist",
+		"appPartnersText": "In order to listen better and faster i used the following servers",
+		"appContactText": "For suggestions or to report a problem",
+		"partnerText": "Thanks for following sites to provide audio files, May God give them about us and Islam all the best",
+		"updateText": "Güncelleme",
+		"facebookText": "Facebookta sayfamız"
+	}
+}

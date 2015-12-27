@@ -27,6 +27,18 @@ var
     pause_icon = '<i class="fa fa-pause"></i>',
     preload_icon = '<i class="fa fa-refresh fa-spin"></i>',
 
+    // volume
+    vol = {
+        mainClass: '.vol-sec',
+        icon: '.vol-icon',
+        barBg: '.vol-bar-bg',
+        bar: '.vol-bar',
+        barClick: '.vol-click-bar',
+        muteIcon: '<i class="fa fa-volume-off"></i>',
+        highVolIcon: '<i class="fa fa-volume-up"></i>',
+        lowVolIcon: '<i class="fa fa-volume-down"></i>'
+    },
+
     playing_img = '<img src="./assets/imgs/playing.gif">',
     preload_img = '<img src="./assets/imgs/preload.gif">',
 
@@ -105,6 +117,7 @@ var
     progress_bar = '.progress',
     buffering_bar = '.buffer',
     stream_bar = '.stream',
+    progressClick = '.progressClick',
 
     // Track Info Elements
     track_meta = '.track-meta',
@@ -201,23 +214,23 @@ function updateSession(current) {
     return playerInfo = [
         [
             prevSurah,
-            allQuran[parseInt(allData.tracks[prevSurah]['id'])]['name_' + langName],
+            allQuran[parseInt(allData.tracks[prevSurah]['id'])]['name_' + langCode],
             allData.tracks[prevSurah]['src'],
-            allQuran[parseInt(allData.tracks[prevSurah]['id'])]["place_" + langName],
+            allQuran[parseInt(allData.tracks[prevSurah]['id'])]["place_" + langCode],
             allQuran[parseInt(allData.tracks[prevSurah]['id'])]["verses"]
         ],
         [
             currSurah,
-            allQuran[parseInt(allData.tracks[currSurah]['id'])]['name_' + langName],
+            allQuran[parseInt(allData.tracks[currSurah]['id'])]['name_' + langCode],
             allData.tracks[currSurah]['src'],
-            allQuran[parseInt(allData.tracks[currSurah]['id'])]["place_" + langName],
+            allQuran[parseInt(allData.tracks[currSurah]['id'])]["place_" + langCode],
             allQuran[parseInt(allData.tracks[currSurah]['id'])]["verses"]
         ],
         [
             nextSurah,
-            allQuran[parseInt(allData.tracks[nextSurah]['id'])]['name_' + langName],
+            allQuran[parseInt(allData.tracks[nextSurah]['id'])]['name_' + langCode],
             allData.tracks[nextSurah]['src'],
-            allQuran[parseInt(allData.tracks[nextSurah]['id'])]["place_" + langName],
+            allQuran[parseInt(allData.tracks[nextSurah]['id'])]["place_" + langCode],
             allQuran[parseInt(allData.tracks[nextSurah]['id'])]["verses"]
         ],
     ];
@@ -266,7 +279,7 @@ function updatePlaylist(callback) {
             }
 
             playlistObj.push({
-                name: background.allQuran[parseInt(idString)]['name_' + background.langName],
+                name: background.allQuran[parseInt(idString)]['name_' + background.langCode],
                 state: (loopID == background.playerInfo[1][0]) ? play_icon : '',
                 id: idString,
                 attr_id: loopID,
@@ -292,8 +305,8 @@ function updatePlaylist(callback) {
         var shekhInfo = [{
             shekhAvatar: background.allSettings.readers[background.shekh_name]['avatar'],
             defaultAvatar: defaultAvatar,
-            shekhName: background.allSettings.readers[background.shekh_name]['name_' + background.langName],
-            shekhCountry: background.allSettings.readers[background.shekh_name]['country_' + background.langName],
+            shekhName: background.allSettings.readers[background.shekh_name]['name_' + background.langCode],
+            shekhCountry: background.allSettings.readers[background.shekh_name]['country_' + background.langCode],
 
             // rating
             ratingStar: ratingObj
@@ -327,7 +340,8 @@ function makeAnm(direction, callback) {
             }
         });
         $(next_meta).animate({
-            'left': '0'
+            'left': '0',
+            'opacity': 1
         }, {
             duration: 500,
             complete: function() {
@@ -352,7 +366,8 @@ function makeAnm(direction, callback) {
             }
         });
         $(prev_meta).animate({
-            'left': '0'
+            'left': '0',
+            'opacity': 1
         }, {
             duration: 500,
             complete: function() {
@@ -395,10 +410,12 @@ function mSelect() {
         // get vars 
         var itemContent = $(this).html();
         var itemValue = $(this).attr('value');
+        var itemDir = $(this).attr('data-dir');
 
         // add Data
         $(this).closest(settings.optionsClass).siblings(settings.currentClass).html(itemContent);
         $(this).closest(settings.optionsClass).siblings(settings.currentClass).attr('value', itemValue);
+        $(this).closest(settings.optionsClass).siblings(settings.currentClass).attr('data-dir', itemDir);
 
         // close dropdown
         $(this).closest(settings.selectClass).parent().siblings().find(settings.selectClass).removeClass(activeClass);
@@ -410,6 +427,8 @@ function mSelect() {
     });
     // fire style scroll plugin after playlist loaded
     fireStyleScroll();
+
+    // update options height
 }
 //search
 function runSearch(input, target) {
@@ -437,6 +456,35 @@ function runSearch(input, target) {
         });
     });
 }
+// buffring bar
+function checkBuffer(audio) {
+    var ranges = [];
+    for (var i = 0; i < audio.buffered.length; i++) {
+        ranges.push([
+            audio.buffered.start(i),
+            audio.buffered.end(i)
+        ]);
+    }
+    for (var i = 0; i < audio.buffered.length; i++) {
+        $(buffering_bar).width(((100 / audio.duration) * ranges[i][0]) + '%');
+        $(buffering_bar).width(((100 / audio.duration) * (ranges[i][1] - ranges[i][0])) + '%');
+    }
+}
+//vol
+function volApp(background) {
+    currVol = (background.localStorage.getItem('ZikrVolume')) ? background.localStorage.getItem('ZikrVolume') : 50;
+    background.x.volume = currVol;
+    $(vol.bar).height(currVol * 100 + '%');
+    if (currVol >= 0.5) {
+        $(vol.icon).html(vol.highVolIcon);
+    }
+    if (currVol < 0.5) {
+        $(vol.icon).html(vol.lowVolIcon);
+    }
+    if (currVol <= 0) {
+        $(vol.icon).html(vol.muteIcon);
+    }
+}
 
 
 
@@ -450,7 +498,7 @@ function runApp() {
                 // IF successfully loaded run next list of functions 
 
                 // 1 - setting app css direction based to current lang 
-                if (background.langName == 'ar') {
+                if (background.rtl) {
                     $('body').addClass('rtl');
                 }
 
@@ -478,22 +526,15 @@ function runApp() {
                 // receve mesages from background page
                 port.onMessage.addListener(function(msg) {
                     // if onprogress
-                    if (msg.onprogress) {
-                        var ranges = [];
-                        for (var i = 0; i < background.x.buffered.length; i++) {
-                            ranges.push([
-                                background.x.buffered.start(i),
-                                background.x.buffered.end(i)
-                            ]);
-                        }
-                        for (var i = 0; i < background.x.buffered.length; i++) {
-                            $(buffering_bar).width(((100 / background.x.duration) * ranges[i][0]) + '%');
-                            $(buffering_bar).width(((100 / background.x.duration) * (ranges[i][1] - ranges[i][0])) + '%');
-                        }
-                    }
+                    // if (msg.onprogress) {
+                    //     checkBuffer(background.x);
+                    // }
                     if (msg.ontimeupdate) {
                         $(stream_bar).width(((background.x.currentTime / background.x.duration) * 100) + '%');
                     }
+                    // volume
+                    volApp(background);
+
                     // if track playing
                     if (msg.onplaying) {
                         $(play_pause).removeClass(waiting_mode).html(pause_icon);
@@ -547,8 +588,8 @@ function runApp() {
                     readersLoop.push({
                         key: i,
                         img: background.allSettings.readers[i]['avatar'],
-                        name: background.allSettings.readers[i]['name_' + background.langName],
-                        country: background.allSettings.readers[i]['country_' + background.langName],
+                        name: background.allSettings.readers[i]['name_' + background.langCode],
+                        country: background.allSettings.readers[i]['country_' + background.langCode],
                         selected: (i == background.shekh_name) ? activeClass : ''
                     });
                 };
@@ -558,6 +599,7 @@ function runApp() {
                     langLoop.push({
                         id: i,
                         name: background.allSettings.languages[i]['name'],
+                        dir: background.allSettings.languages[i]['dir'],
                         selected: (i == background.lang) ? activeClass : ''
                     });
                 };
@@ -580,14 +622,15 @@ function runApp() {
                     settings_reader_ex: background.allLangData.settings.readerTitleEx,
                     curr_reader_src: background.shekh_name,
                     curr_reader_img: background.allSettings.readers[background.shekh_name]['avatar'],
-                    curr_reader_name: background.allSettings.readers[background.shekh_name]['name_' + background.langName],
-                    curr_reader_country: background.allSettings.readers[background.shekh_name]['country_' + background.langName],
+                    curr_reader_name: background.allSettings.readers[background.shekh_name]['name_' + background.langCode],
+                    curr_reader_country: background.allSettings.readers[background.shekh_name]['country_' + background.langCode],
                     readerItem: readersLoop,
                     searchString: background.allLangData.settings.searchString,
                     // Languages Sections
                     settings_lang_title: background.allLangData.settings.langTitle,
                     settings_lang_ex: background.allLangData.settings.langTitleEx,
                     curr_lang_id: background.lang,
+                    curr_lang_dir: background.allSettings.languages[background.lang]['dir'],
                     curr_lang_name: background.allSettings.languages[background.lang]['name'],
                     langItem: langLoop,
                     // Sorting Section
@@ -800,6 +843,64 @@ function runApp() {
                         background.location.reload();
                     }, 1000);
                 });
+                // progress click event
+                $(document).on('click', progressClick, function(e) {
+                    e.width = $(this).outerWidth();
+                    if (background.rtl) {
+                        background.x.currentTime = background.x.duration * (parseInt((e.width - e.offsetX) / e.width * 100)) / 100;
+                    } else {
+                        background.x.currentTime = background.x.duration * (parseInt(e.offsetX / e.width * 100)) / 100;
+                    }
+                });
+                $(document).on('mousemove', progressClick, function(e) {
+                    e.width = $(this).outerWidth();
+                    e.tooltipWidth = $('.tooltip').outerWidth();
+                    $(progress_bar).height(5);
+                    $('.tooltip').filter(function() {
+                        $(this).fadeIn();
+                        $(this).css('left', e.offsetX - e.tooltipWidth / 2);
+                        if ($(this).position().left >= e.width - e.tooltipWidth) {
+                            $(this).css('left', e.width - e.tooltipWidth);
+                        } else if ($(this).position().left <= 0) {
+                            $(this).css('left', 0);
+                        }
+
+                        if (background.rtl) {
+                            $(buffering_bar).width((e.width - e.offsetX));
+
+                            mins = parseInt(parseInt(background.x.duration * (parseInt((e.width - e.offsetX) / e.width * 100)) / 100) / 60);
+                            mins = (mins < 10) ? '0' + mins : mins;
+
+                            secs = parseInt(parseInt(background.x.duration * (parseInt((e.width - e.offsetX) / e.width * 100)) / 100)) % 60;
+                            secs = (secs < 10) ? '0' + secs : secs;
+                        } else {
+                            $(buffering_bar).width(e.offsetX);
+
+                            mins = parseInt(parseInt(background.x.duration * (parseInt(e.offsetX / e.width * 100)) / 100) / 60);
+                            mins = (mins < 10) ? '0' + mins : mins;
+
+                            secs = parseInt(parseInt(background.x.duration * (parseInt(e.offsetX / e.width * 100)) / 100)) % 60;
+                            secs = (secs < 10) ? '0' + secs : secs;
+                        }
+                        $(this).html(mins + ':' + secs);
+                    });
+                });
+                $(document).on('mouseleave', progressClick, function(e) {
+                    $('.tooltip').fadeOut();
+                    $(progress_bar).height(3);
+                    $(buffering_bar).width(0);
+                });
+                // volume
+                $(document).on('click', vol.barClick, function(e) {
+                    e.height = $(this).outerHeight();
+                    background.x.volume = parseInt((e.height - e.offsetY) / e.height * 100 / 10) * 0.1;
+                    $(vol.bar).height(parseInt((e.height - e.offsetY) / e.height * 100) + '%');
+                    background.localStorage.setItem('ZikrVolume', background.x.volume);
+                });
+                $(document).on('click', vol.icon, function(e) {
+                    background.x.volume = 0;
+                    background.localStorage.setItem('ZikrVolume', background.x.volume);
+                });
             }).error(function() {
                 // if loading fail(app.html) : alert with error message
                 alert('Error Loading App File !!');
@@ -811,7 +912,7 @@ function runApp() {
                 // when finish loading : run the next functions
 
                 // 1 - if language is arabic rtl the body 
-                if (background.langName == 'ar') {
+                if (background.rtl) {
                     $('body').addClass('rtl');
                 }
 
@@ -822,8 +923,8 @@ function runApp() {
                     readersLoop.push({
                         key: i,
                         img: background.allSettings.readers[i]['avatar'],
-                        name: background.allSettings.readers[i]['name_' + background.langName],
-                        country: background.allSettings.readers[i]['country_' + background.langName],
+                        name: background.allSettings.readers[i]['name_' + background.langCode],
+                        country: background.allSettings.readers[i]['country_' + background.langCode],
                         selected: (i == background.shekh_name) ? activeClass : ''
                     });
                 };
@@ -833,6 +934,7 @@ function runApp() {
                     langLoop.push({
                         id: i,
                         name: background.allSettings.languages[i]['name'],
+                        dir: background.allSettings.languages[i]['dir'],
                         selected: (i == background.lang) ? activeClass : ''
                     });
                 };
@@ -863,6 +965,7 @@ function runApp() {
                     settings_lang_title: background.allLangData.settings.langTitle,
                     settings_lang_ex: background.allLangData.settings.langTitleEx,
                     curr_lang_id: background.lang,
+                    curr_lang_dir: background.allSettings.languages[background.lang]['dir'],
                     curr_lang_name: background.allSettings.languages[background.lang]['name'],
                     langItem: langLoop,
                     // Sorting Section

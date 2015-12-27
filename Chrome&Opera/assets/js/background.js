@@ -6,7 +6,7 @@ localStorage.removeItem('now');
 if (localStorage.userSettings) {
     // If This Is Registerd User : load app page
     // then load settings config file
-    $.getJSON('http://zikrapp.s3.amazonaws.com/db/settings.json?v=' + new Date().getTime(), function(json) {
+    $.getJSON('./assets/json/settings.json?v=' + new Date().getTime(), function(json) {
         // if successfully loaded : get settings object and add it to var
         allSettings = json; // this var has all settings object
     }).done(function() {
@@ -16,13 +16,17 @@ if (localStorage.userSettings) {
 
         // setup app options (general vars)
         lang = parseInt(finalSettings.lang); // app language id
-        langName = allSettings.languages[finalSettings.lang]['code']; // app language name (ar or en) for example
+        langDir = allSettings.languages[finalSettings.lang]['dir']; // app language direction (rtl or ltr) for example
         shekh_name = finalSettings.reader; // app reader id
         sorting_type_id = parseInt(finalSettings.sort); // playlist playing type (asc or desc or random)
         sorting_type = allSettings.sort[finalSettings.sort]['name']; // playlist playing type (asc or desc or random)
 
+        // setting global language vars
+        rtl = (langDir == 'rtl') ? true : false; // global direction var
+        langCode = (rtl) ? 'ar' : 'en'; // global language code
+
         // after loading setting page and getting current reader : load quran metadata file
-        $.getJSON('http://zikrapp.s3.amazonaws.com/db/quran.json?v=' + new Date().getTime(), function(metadata) {
+        $.getJSON('./assets/json/quran.json?v=' + new Date().getTime(), function(metadata) {
             // after loading metadata object : add it to global var
             allQuran = metadata; // this var has all Quran metadata object (114 surrah)
         }).done(function() {
@@ -78,6 +82,11 @@ if (localStorage.userSettings) {
                         x.onplaying = function() {
                             port.postMessage({
                                 onplaying: true
+                            });
+                        };
+                        x.onvolumechange = function(){
+                            port.postMessage({
+                                onvolumechange: true
                             });
                         };
                         // send message to popup if track has paused
@@ -197,14 +206,19 @@ if (localStorage.userSettings) {
     });
 } else {
     // If This Is New User : load settings object
-    $.getJSON('http://zikrapp.s3.amazonaws.com/db/settings.json?v=' + new Date().getTime(), function(json) {
+    $.getJSON('./assets/json/settings.json?v=' + new Date().getTime(), function(json) {
         // if successfully loaded : add all settings object to global var and setup the app
         allSettings = json; // this var has all language object
         lang = 0; // default language for first load (0 for arabic and 1 for english)
-        langName = allSettings.languages[lang]['code']; // language name ar or en
+        langDir = allSettings.languages[lang]['dir']; // app language direction (rtl or ltr) for example
         shekh_name = 'none'; // default reader name (none by default)
         sorting_type_id = 0; // playlist playing type (asc or desc or random)
         sorting_type = allSettings.sort[sorting_type_id]['name']; // playlist playing type (asc or desc or random)
+
+        // setting global language vars
+        rtl = (langDir == 'rtl') ? true : false; // global direction var
+        langCode = (rtl) ? 'ar' : 'en'; // global language code
+
     }).done(function() {
         // when finish loading : load language config file
         $.getJSON(allSettings.languages[lang]['src'] + '?v=' + new Date().getTime(), function(json) {

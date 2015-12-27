@@ -63,10 +63,10 @@
                                 </div>
                             </div>
                             <div class="mSelect">
-                                <div class="current" value="${curr_lang_id}">${curr_lang_name}</div>
+                                <div class="current" data-dir="${curr_lang_dir}" value="${curr_lang_id}">${curr_lang_name}</div>
                                 <div class="options">
                                     {{each langItem}}
-                                    <div class="item ${$value['selected']}" value="${$value['id']}">${$value['name']}</div>
+                                    <div data-dir="${$value['dir']}" class="item ${$value['selected']}" value="${$value['id']}">${$value['name']}</div>
                                     {{/each}}
                                 </div>
                             </div>

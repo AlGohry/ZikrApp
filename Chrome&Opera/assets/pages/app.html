@@ -25,6 +25,8 @@
             </div>
         </script>
         <div class="progress">
+            <div class="tooltip">02:50</div>
+            <div class="progressClick"></div>
             <div class="buffer"></div>
             <div class="stream"></div>
         </div>
@@ -37,6 +39,17 @@
             </div>
             <div class="option next">
                 <i class="fa fa-forward"></i>
+            </div>
+        </div>
+        <div class="player-extra">
+            <div class="vol-sec">
+                <i class="vol-icon">
+                    <i class="fa fa-volume-down"></i>
+                </i>
+                <div class="vol-bar-bg">
+                    <div class="vol-bar"></div>
+                    <div class="vol-click-bar"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -188,10 +201,10 @@
                                 </div>
                             </div>
                             <div class="mSelect">
-                                <div class="current" value="${curr_lang_id}">${curr_lang_name}</div>
+                                <div class="current" data-dir="${curr_lang_dir}" value="${curr_lang_id}">${curr_lang_name}</div>
                                 <div class="options">
                                     {{each langItem}}
-                                    <div class="item ${$value['selected']}" value="${$value['id']}">${$value['name']}</div>
+                                    <div data-dir="${$value['dir']}" class="item ${$value['selected']}" value="${$value['id']}">${$value['name']}</div>
                                     {{/each}}
                                 </div>
                             </div>

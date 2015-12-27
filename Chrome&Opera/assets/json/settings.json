@@ -2,11 +2,18 @@
     "languages": [{
         "code": "ar",
         "name": "العربية",
-        "src": "http://zikrapp.s3.amazonaws.com/db/languages/arabic.json"
+        "src": "./assets/json/languages/arabic.json",
+        "dir": "rtl"
     }, {
         "code": "en",
         "name": "English",
-        "src": "http://zikrapp.s3.amazonaws.com/db/languages/english.json"
+        "src": "./assets/json/languages/english.json",
+        "dir": "ltr"
+    }, {
+        "code": "en",
+        "name": "Türk",
+        "src": "./assets/json/languages/turkish.json",
+        "dir": "ltr"
     }],
     "sort": [{
         "name": "asc",

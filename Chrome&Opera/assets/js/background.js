@@ -186,10 +186,17 @@ if (localStorage.userSettings) {
                             };
                             // update session when track ends
                             x.onended = function() {
-                                updateSession(nextSurah);
-                                x.src = playerInfo[1][2];
-                                x.load();
-                                x.play();
+                                if (localStorage.getItem('ZikrRepeatTrack')) {
+                                    x.currentTime = 0;
+                                    x.play();
+                                    localStorage.removeItem('ZikrRepeatTrack');
+                                    $(repeatBtn).removeClass(activeClass);
+                                } else {
+                                    updateSession(nextSurah);
+                                    x.src = playerInfo[1][2];
+                                    x.load();
+                                    x.play();
+                                }
                             };
                         });
                     });

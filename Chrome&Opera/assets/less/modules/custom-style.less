@@ -378,6 +378,13 @@ body {
                     .track-title {
                         .flex(1);
                     }
+                    .track-download {
+                        border-left: 1px solid rgba(255, 255, 255, 0.04);
+                        cursor: pointer;
+                        &:hover {
+                            color: #f1c40f;
+                        }
+                    }
                     &:hover,
                     &.active {
                         color: #DDD;
@@ -432,18 +439,22 @@ body {
                         color: #FFF;
                         cursor: pointer;
                         .transition(all 0.5s);
+                        border: 1px solid transparent;
                     }
                     .vol-bar-bg {
                         height: 0px;
-                        width: 4px;
+                        width: 6px;
                         left: 50%;
                         position: absolute;
-                        background-color: fade(#e67e22, 50%);
+                        background-color: rgba(0, 0, 0, 0.8);
                         .border-radius(20px 20px 0 0);
                         overflow: hidden;
                         bottom: 25px;
-                        margin-left: 4/2*-1px;
-                        .transition(height 0.5s);
+                        margin-left: 6/2*-1px;
+                        border: 1px solid transparent;
+                        border-bottom: 0;
+                        .box-shadow(0 0 10px #000);
+                        .transition(all 0.5s);
                         .vol-bar {
                             height: 50%;
                             width: 100%;
@@ -468,12 +479,13 @@ body {
                             height: 100px;
                         }
                         .vol-icon {
-                            background-color: #fff;
-                            color: #222;
+                            background-color: rgba(0, 0, 0, 0.8);
+                            border-color: #fff;
                             font-size: 13px;
                         }
                         .vol-bar-bg {
                             height: 50px;
+                            border-color: #FFF;
                         }
                     }
                 }
@@ -565,6 +577,19 @@ body {
                 .facebook {
                     display: block;
                     background-color: fade(#3b5998, 50%);
+                    color: #FFF;
+                    .border-radius(2px);
+                    padding: 5px 10px;
+                    margin: 5px 0;
+                    text-decoration: none;
+                    &:hover {
+                        background-color: fade(#fff, 50%);
+                        color: #222;
+                    }
+                }
+                .github {
+                    display: block;
+                    background-color: fade(#007ee5, 50%);
                     color: #FFF;
                     .border-radius(2px);
                     padding: 5px 10px;
@@ -725,7 +750,7 @@ body {
                                 }
                                 .style-scroll {
                                     position: absolute;
-                                    top: 38px;
+                                    top: 37px;
                                     left: 0;
                                     right: 0;
                                     bottom: 0;
@@ -803,7 +828,7 @@ body {
                                 }
                             }
                             .options {
-                                height: 320px;
+                                height: 290px;
                                 opacity: 1;
                             }
                         }

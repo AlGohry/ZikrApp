@@ -94,6 +94,7 @@ var
         attr: 'target-db',
         id: 'id'
     },
+    playlistFilter = '#playlistFilter',
 
     // Settings Page
     settings = {
@@ -118,6 +119,7 @@ var
     buffering_bar = '.buffer',
     stream_bar = '.stream',
     progressClick = '.progressClick',
+    progressTooltip = '.tooltip',
 
     // Track Info Elements
     track_meta = '.track-meta',
@@ -135,7 +137,7 @@ var
     trackAttr = 'track-id',
     trackAuthorAttr = 'track-author',
 
-
+    resetPlaylist = false,
 
     // Global Vars
     currSurah,
@@ -175,7 +177,7 @@ function updateSession(current) {
         if (current) {
             currSurah = parseInt(current);
         } else {
-            currSurah = (localStorage.now) ? parseInt(localStorage.now) : 0;
+            currSurah = (localStorage.now && allData.tracks[localStorage.now]) ? parseInt(localStorage.now) : 0;
         }
         nextSurah = currSurah + 1;
         prevSurah = currSurah - 1;
@@ -190,7 +192,7 @@ function updateSession(current) {
         if (current) {
             currSurah = parseInt(current);
         } else {
-            currSurah = lastSurrah - 1;
+            currSurah = (localStorage.now && allData.tracks[localStorage.now]) ? parseInt(localStorage.now) : lastSurrah - 1;
         }
         nextSurah = currSurah - 1;
         prevSurah = currSurah + 1;
@@ -205,10 +207,10 @@ function updateSession(current) {
         if (current) {
             currSurah = current;
         } else {
-            currSurah = (localStorage.now) ? parseInt(localStorage.now) : genRandom(firstSurrah, lastSurrah);
+            currSurah = (localStorage.now && allData.tracks[localStorage.now]) ? parseInt(localStorage.now) : genRandom(firstSurrah, lastSurrah - 1);
         }
-        nextSurah = genRandom(firstSurrah, lastSurrah, currSurah);
-        prevSurah = genRandom(firstSurrah, lastSurrah, currSurah);
+        nextSurah = genRandom(firstSurrah, lastSurrah - 1, currSurah);
+        prevSurah = genRandom(firstSurrah, lastSurrah - 1, currSurah);
     }
     // adding info to vars
     return playerInfo = [
@@ -235,7 +237,6 @@ function updateSession(current) {
         ],
     ];
 }
-
 
 
 // connect to background window to save global vars at it
@@ -471,19 +472,37 @@ function checkBuffer(audio) {
     }
 }
 //vol
-function volApp(background) {
-    currVol = (background.localStorage.getItem('ZikrVolume')) ? background.localStorage.getItem('ZikrVolume') : 50;
-    background.x.volume = currVol;
-    $(vol.bar).height(currVol * 100 + '%');
-    if (currVol >= 0.5) {
-        $(vol.icon).html(vol.highVolIcon);
-    }
-    if (currVol < 0.5) {
-        $(vol.icon).html(vol.lowVolIcon);
-    }
-    if (currVol <= 0) {
-        $(vol.icon).html(vol.muteIcon);
-    }
+function volApp(volume) {
+    chrome.runtime.getBackgroundPage(function(background) {
+        if (volume) {
+            if (volume >= 100) {
+                volume = 100;
+            } else if (volume <= 0) {
+                volume = 0;
+            }
+            volume = volume * 0.01;
+            background.x.volume = volume;
+            background.localStorage.setItem('ZikrVolume', volume);
+            $(vol.bar).height(volume * 100 + '%');
+        } else {
+            volume = (background.localStorage.getItem('ZikrVolume')) ? JSON.parse(background.localStorage.getItem('ZikrVolume')).toFixed(2) : 0.5;
+            background.x.volume = volume;
+        }
+
+
+        $(vol.bar).height(volume * 100 + '%');
+
+        if (volume >= 0.5) {
+            $(vol.icon).html(vol.highVolIcon);
+        }
+        if (volume < 0.5) {
+            $(vol.icon).html(vol.lowVolIcon);
+        }
+        if (volume <= 0) {
+            $(vol.icon).html(vol.muteIcon);
+        }
+
+    });
 }
 
 
@@ -496,6 +515,9 @@ function runApp() {
             // If This Is Registerd User : load app page
             $(player).load('./assets/pages/app.html', function() {
                 // IF successfully loaded run next list of functions 
+
+                // 1 - run volume app
+                volApp();
 
                 // 1 - setting app css direction based to current lang 
                 if (background.rtl) {
@@ -517,6 +539,7 @@ function runApp() {
                 // 4 - updating audio object (at background page window) and load it 
                 if (background.x.paused) { // update it jsut for first time load
                     background.x.play();
+                    background.x.currentTime = background.localStorage.getItem('ZikrCurrTime');
                 }
 
                 // 5 - open connection channel with background page and name it popupState
@@ -525,15 +548,11 @@ function runApp() {
                 });
                 // receve mesages from background page
                 port.onMessage.addListener(function(msg) {
-                    // if onprogress
-                    // if (msg.onprogress) {
-                    //     checkBuffer(background.x);
-                    // }
+
                     if (msg.ontimeupdate) {
                         $(stream_bar).width(((background.x.currentTime / background.x.duration) * 100) + '%');
+                        background.localStorage.setItem('ZikrCurrTime', background.x.currentTime);
                     }
-                    // volume
-                    volApp(background);
 
                     // if track playing
                     if (msg.onplaying) {
@@ -567,7 +586,7 @@ function runApp() {
                         $(player_playlist + ' ' + style_scroll).mCustomScrollbar("scrollTo", player_track + '.' + activeClass, {
                             scrollInertia: 1000
                         });
-                        background.localStorage.setItem('now', background.playerInfo[1][0]);
+                        background.localStorage.setItem('ZikrCurrTrack', background.playerInfo[1][0]);
                     }
                     // if waiting
                     if (msg.onwaiting) {
@@ -580,6 +599,9 @@ function runApp() {
                         $(player_track + '.' + activeClass).find(player_track_state).html(play_icon);
                     }
                 });
+
+                // Set Session
+                background.localStorage.setItem('ZikrCurrTrack', background.playerInfo[1][0]);
 
                 // 6 - Generating Setting And About Pages Based To Selected Language
                 // First : Generat Readers List Based To Selected Language
@@ -650,7 +672,8 @@ function runApp() {
                     appContactText: background.allLangData.about.appContactText,
                     updateText: background.allLangData.about.updateText,
                     partnerText: background.allLangData.about.partnerText,
-                    facebookText: background.allLangData.about.facebookText
+                    facebookText: background.allLangData.about.facebookText,
+                    githubText: background.allLangData.about.githubText
                 }];
                 $('#translatedPages').html($('#settingsPage').tmpl(pushTranslations));
 
@@ -673,6 +696,7 @@ function runApp() {
                     settings.readerVal = $(settings.readerId + ' ' + settings.currentClass).attr('value'),
                     settings.langHtml = $(settings.langId + ' ' + settings.currentClass).html(),
                     settings.langVal = $(settings.langId + ' ' + settings.currentClass).attr('value'),
+                    settings.langDir = $(settings.langId + ' ' + settings.currentClass).attr('data-dir'),
                     settings.sortHtml = $(settings.sortId + ' ' + settings.currentClass).html(),
                     settings.sortVal = $(settings.sortId + ' ' + settings.currentClass).attr('value');
 
@@ -748,6 +772,8 @@ function runApp() {
                 $(document).on('click', page.closeBtn, function(event) {
                     event.preventDefault();
 
+                    background.resetPlaylist = false;
+
                     // back effect
                     $(player).removeClass(page.activeClasses.settings + ' ' + page.activeClasses.about);
 
@@ -759,6 +785,8 @@ function runApp() {
                         // reader row
                         $(settings.readerId + ' ' + settings.currentClass).html(settings.readerHtml);
                         $(settings.readerId + ' ' + settings.currentClass).attr('value', settings.readerVal);
+                        $(settings.readerId + ' ' + settings.itemClass).removeClass(activeClass);
+                        $(settings.readerId + ' ' + settings.itemClass + '[' + settings.valueAttr + '="' + settings.readerVal + '"]').addClass(activeClass);
                         // inactive save button
                         $(page.saveBtn).addClass(page.inActiveClasses.reader);
 
@@ -767,6 +795,9 @@ function runApp() {
                         // lang row
                         $(settings.langId + ' ' + settings.currentClass).html(settings.langHtml);
                         $(settings.langId + ' ' + settings.currentClass).attr('value', settings.langVal);
+                        $(settings.langId + ' ' + settings.currentClass).attr('data-dir', settings.langDir);
+                        $(settings.langId + ' ' + settings.itemClass).removeClass(activeClass);
+                        $(settings.langId + ' ' + settings.itemClass + '[' + settings.valueAttr + '="' + settings.langVal + '"]').addClass(activeClass);
                         // inactive save button
                         $(page.saveBtn).addClass(page.inActiveClasses.lang);
                     }
@@ -774,6 +805,8 @@ function runApp() {
                         // sort row
                         $(settings.sortId + ' ' + settings.currentClass).html(settings.sortHtml);
                         $(settings.sortId + ' ' + settings.currentClass).attr('value', settings.sortVal);
+                        $(settings.sortId + ' ' + settings.itemClass).removeClass(activeClass);
+                        $(settings.sortId + ' ' + settings.itemClass + '[' + settings.valueAttr + '="' + settings.sortVal + '"]').addClass(activeClass);
                         // inactive save button
                         $(page.saveBtn).addClass(page.inActiveClasses.sort);
                     }
@@ -785,8 +818,10 @@ function runApp() {
                     var readerItemValue = $(this).attr('value');
                     if (readerItemValue != background.shekh_name) {
                         $(page.saveBtn).removeClass(page.inActiveClasses.reader);
+                        background.resetPlaylist = true;
                     } else {
                         $(page.saveBtn).addClass(page.inActiveClasses.reader);
+                        background.resetPlaylist = false;
                     }
                 });
                 $(document).on('click', settings.langId + ' ' + settings.itemClass, function(event) {
@@ -814,9 +849,6 @@ function runApp() {
                 $(document).on('click', page.saveBtn, function(event) {
                     event.preventDefault();
 
-                    // reset now session
-                    localStorage.removeItem('now');
-
                     $(player).addClass('loading');
                     // stop quran
                     if (typeof background.x !== 'undefined') {
@@ -833,6 +865,11 @@ function runApp() {
                     };
                     background.localStorage.setItem('userSettings', JSON.stringify(finalVals));
                     setTimeout(function() {
+                        // reset now session
+                        if (background.resetPlaylist) {
+                            background.localStorage.removeItem('ZikrCurrTrack');
+                            background.localStorage.removeItem('ZikrCurrTime');
+                        }
                         background.location.reload();
                     }, 1000);
                 });
@@ -843,6 +880,81 @@ function runApp() {
                         background.location.reload();
                     }, 1000);
                 });
+
+                // Keys Events
+                $(window).on('keypress', function(e) {
+                    // Space Key
+                    if (e.which == 32 && e.shiftKey) {
+                        if (!background.x.paused) {
+                            background.x.pause();
+                        } else {
+                            background.x.play();
+                        }
+                    }
+                    // Plus Key
+                    if (e.which == 43 && e.shiftKey) {
+                        volApp(background.x.volume * 100 + 10);
+                    }
+                    // Minus Key
+                    if (e.which == 45 && e.shiftKey) {
+                        volApp(background.x.volume * 100 - 10);
+                    }
+                    // M Key
+                    if (e.which == 77 && e.shiftKey) {
+                        volApp(-1);
+                    }
+                    // H Key
+                    if (e.which == 72 && e.shiftKey) {
+                        volApp(50);
+                    }
+                    // T Key
+                    if (e.which == 84 && e.shiftKey) {
+                        volApp(101);
+                    }
+                    // N Key
+                    if (e.which == 78 && e.shiftKey) {
+                        background.updateSession('' + background.nextSurah + '');
+                        makeAnm('next', function() {
+                            updateMeta();
+                            $(next_meta).find(track_title).html(background.playerInfo[2][1]); // update next track
+                            $(next_meta).find(track_author).html(background.playerInfo[2][3] + ' / ' + background.playerInfo[2][4] + ' ' + background.allLangData.player.versesString); // update next track info
+                            background.x.src = background.playerInfo[1][2];
+                            background.x.load();
+                            background.x.play();
+                        });
+                    }
+                    // P Key
+                    if (e.which == 80 && e.shiftKey) {
+                        background.updateSession('' + background.prevSurah + '');
+                        makeAnm('prev', function() {
+                            updateMeta();
+                            $(prev_meta).find(track_title).html(background.playerInfo[0][1]); // update prev track
+                            $(prev_meta).find(track_author).html(background.playerInfo[0][3] + ' / ' + background.playerInfo[0][4] + ' ' + background.allLangData.player.versesString); // update prev track info
+                            background.x.src = background.playerInfo[1][2];
+                            background.x.load();
+                            background.x.play();
+                        });
+                    }
+                    // F Key
+                    if (e.which == 70 && e.shiftKey) {
+                        background.x.currentTime = background.x.currentTime+10;
+                    }
+                    // B Key
+                    if (e.which == 66 && e.shiftKey) {
+                        background.x.currentTime = background.x.currentTime-10;
+                    }
+                    // S Key
+                    if (e.which == 19 && e.shiftKey && e.ctrlKey) {
+                        $(playlistFilter+' '+search.input).focus();
+                        return false;
+                    }
+                });
+
+
+
+                /* -------------------------------------------------- */
+                /* ------------------ Progress Bar ------------------ */
+                /* -------------------------------------------------- */
                 // progress click event
                 $(document).on('click', progressClick, function(e) {
                     e.width = $(this).outerWidth();
@@ -852,11 +964,12 @@ function runApp() {
                         background.x.currentTime = background.x.duration * (parseInt(e.offsetX / e.width * 100)) / 100;
                     }
                 });
+                // progress hover effect : tooltip will take current hover point time
                 $(document).on('mousemove', progressClick, function(e) {
                     e.width = $(this).outerWidth();
-                    e.tooltipWidth = $('.tooltip').outerWidth();
-                    $(progress_bar).height(5);
-                    $('.tooltip').filter(function() {
+                    e.tooltipWidth = $(progressTooltip).outerWidth();
+                    $(progress_bar).height(3);
+                    $(progressTooltip).filter(function() {
                         $(this).fadeIn();
                         $(this).css('left', e.offsetX - e.tooltipWidth / 2);
                         if ($(this).position().left >= e.width - e.tooltipWidth) {
@@ -864,43 +977,52 @@ function runApp() {
                         } else if ($(this).position().left <= 0) {
                             $(this).css('left', 0);
                         }
-
+                        // if app lang is rtl
                         if (background.rtl) {
                             $(buffering_bar).width((e.width - e.offsetX));
-
                             mins = parseInt(parseInt(background.x.duration * (parseInt((e.width - e.offsetX) / e.width * 100)) / 100) / 60);
                             mins = (mins < 10) ? '0' + mins : mins;
-
                             secs = parseInt(parseInt(background.x.duration * (parseInt((e.width - e.offsetX) / e.width * 100)) / 100)) % 60;
                             secs = (secs < 10) ? '0' + secs : secs;
                         } else {
                             $(buffering_bar).width(e.offsetX);
-
                             mins = parseInt(parseInt(background.x.duration * (parseInt(e.offsetX / e.width * 100)) / 100) / 60);
                             mins = (mins < 10) ? '0' + mins : mins;
-
                             secs = parseInt(parseInt(background.x.duration * (parseInt(e.offsetX / e.width * 100)) / 100)) % 60;
                             secs = (secs < 10) ? '0' + secs : secs;
                         }
                         $(this).html(mins + ':' + secs);
                     });
                 });
+                // when mouse will leave progressbar : tooltip must be hidden
                 $(document).on('mouseleave', progressClick, function(e) {
-                    $('.tooltip').fadeOut();
+                    $(progressTooltip).fadeOut();
                     $(progress_bar).height(3);
                     $(buffering_bar).width(0);
                 });
+                /* -------------------------------------------------- */
+                /* ----------------- / Progress Bar ----------------- */
+                /* -------------------------------------------------- */
+
+
+
+
+
+                /* -------------------------------------------------- */
+                /* ----------------- Volume Option ------------------ */
+                /* -------------------------------------------------- */
                 // volume
                 $(document).on('click', vol.barClick, function(e) {
                     e.height = $(this).outerHeight();
-                    background.x.volume = parseInt((e.height - e.offsetY) / e.height * 100 / 10) * 0.1;
-                    $(vol.bar).height(parseInt((e.height - e.offsetY) / e.height * 100) + '%');
-                    background.localStorage.setItem('ZikrVolume', background.x.volume);
+                    console.log(parseInt((e.height - e.offsetY) / e.height * 100 / 10));
+                    volApp(parseInt((e.height - e.offsetY) / e.height * 100));
                 });
                 $(document).on('click', vol.icon, function(e) {
-                    background.x.volume = 0;
-                    background.localStorage.setItem('ZikrVolume', background.x.volume);
+                    volApp(-1);
                 });
+                /* -------------------------------------------------- */
+                /* ---------------- / Volume Option ----------------- */
+                /* -------------------------------------------------- */
             }).error(function() {
                 // if loading fail(app.html) : alert with error message
                 alert('Error Loading App File !!');
@@ -1009,9 +1131,6 @@ function runApp() {
                 // Save Button
                 $(document).on('click', page.saveBtn, function(event) {
                     event.preventDefault();
-
-                    // reset now session
-                    localStorage.removeItem('now');
 
                     $(player).addClass('loading');
                     // stop quran

@@ -1,7 +1,5 @@
 // Registering new Audio object
 var x = new Audio();
-// clear history
-localStorage.removeItem('now');
 // Check if this is new or already registered user
 if (localStorage.userSettings) {
     // If This Is Registerd User : load app page
@@ -65,6 +63,8 @@ if (localStorage.userSettings) {
                         function isPlaying(audio) {
                             return !audio.paused;
                         }
+
+
 
                         // send message to popup if track playing
                         if (isPlaying(x)) {
@@ -177,7 +177,7 @@ if (localStorage.userSettings) {
                             x.ontimeupdate = function() {};
                             // update session every time new track playing 
                             x.onloadstart = function() {
-                                localStorage.setItem('now', playerInfo[1][0]);
+                                localStorage.setItem('ZikrCurrTrack', playerInfo[1][0]);
                             };
                             // update session when track ends
                             x.onended = function() {

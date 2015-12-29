@@ -49,6 +49,7 @@ var
 
     shekhDataScript = '#shekhData',
     defaultAvatar = 'http://zikrapp.s3-website.eu-central-1.amazonaws.com/avatars/default.jpg',
+    defaultAvatarLocal = './assets/imgs/default.jpg',
 
     // Buttons
     option_btn = '.option',
@@ -58,6 +59,14 @@ var
     tool_btn = '.tool',
     setting_btn = '.call-settings',
     playlist_btn = '.call-playlist',
+
+    repeatBtn = '.repeat-block',
+
+    timebar = {
+        class: '.timebar',
+        current: '.current',
+        total: '.total'
+    },
 
     // rating
     rating = {
@@ -177,7 +186,7 @@ function updateSession(current) {
         if (current) {
             currSurah = parseInt(current);
         } else {
-            currSurah = (localStorage.now && allData.tracks[localStorage.now]) ? parseInt(localStorage.now) : 0;
+            currSurah = (localStorage['ZikrCurrTrack'] && allData.tracks[localStorage['ZikrCurrTrack']]) ? parseInt(localStorage['ZikrCurrTrack']) : 0;
         }
         nextSurah = currSurah + 1;
         prevSurah = currSurah - 1;
@@ -192,7 +201,7 @@ function updateSession(current) {
         if (current) {
             currSurah = parseInt(current);
         } else {
-            currSurah = (localStorage.now && allData.tracks[localStorage.now]) ? parseInt(localStorage.now) : lastSurrah - 1;
+            currSurah = (localStorage['ZikrCurrTrack'] && allData.tracks[localStorage['ZikrCurrTrack']]) ? parseInt(localStorage['ZikrCurrTrack']) : lastSurrah - 1;
         }
         nextSurah = currSurah - 1;
         prevSurah = currSurah + 1;
@@ -207,7 +216,7 @@ function updateSession(current) {
         if (current) {
             currSurah = current;
         } else {
-            currSurah = (localStorage.now && allData.tracks[localStorage.now]) ? parseInt(localStorage.now) : genRandom(firstSurrah, lastSurrah - 1);
+            currSurah = (localStorage['ZikrCurrTrack'] && allData.tracks[localStorage['ZikrCurrTrack']]) ? parseInt(localStorage['ZikrCurrTrack']) : genRandom(firstSurrah, lastSurrah - 1);
         }
         nextSurah = genRandom(firstSurrah, lastSurrah - 1, currSurah);
         prevSurah = genRandom(firstSurrah, lastSurrah - 1, currSurah);
@@ -483,14 +492,14 @@ function volApp(volume) {
             volume = volume * 0.01;
             background.x.volume = volume;
             background.localStorage.setItem('ZikrVolume', volume);
-            $(vol.bar).height(volume * 100 + '%');
+            $(vol.bar).width(volume * 100 + '%');
         } else {
             volume = (background.localStorage.getItem('ZikrVolume')) ? JSON.parse(background.localStorage.getItem('ZikrVolume')).toFixed(2) : 0.5;
             background.x.volume = volume;
         }
 
 
-        $(vol.bar).height(volume * 100 + '%');
+        $(vol.bar).width(volume * 100 + '%');
 
         if (volume >= 0.5) {
             $(vol.icon).html(vol.highVolIcon);
@@ -549,9 +558,32 @@ function runApp() {
                 // receve mesages from background page
                 port.onMessage.addListener(function(msg) {
 
+                    // check repeat session
+                    if (background.localStorage.getItem('ZikrRepeatTrack')) {
+                        $(repeatBtn).addClass(activeClass);
+                    } else {
+                        $(repeatBtn).removeClass(activeClass);
+                    }
+
                     if (msg.ontimeupdate) {
                         $(stream_bar).width(((background.x.currentTime / background.x.duration) * 100) + '%');
                         background.localStorage.setItem('ZikrCurrTime', background.x.currentTime);
+
+                        // timebar
+                        currMin = (background.x.currentTime) ? parseInt(background.x.currentTime / 60) : 0;
+                        currMin = (currMin && currMin < 10) ? '0' + currMin : currMin;
+
+                        currSec = (background.x.currentTime) ? parseInt(background.x.currentTime % 60) : 0;
+                        currSec = (currSec && currSec < 10) ? '0' + currSec : currSec;
+
+                        totalMin = (background.x.duration) ? parseInt(background.x.duration / 60) : 0;
+                        totalMin = (totalMin && totalMin < 10) ? '0' + totalMin : totalMin;
+
+                        totalSec = (background.x.duration) ? parseInt(background.x.duration % 60) : 0;
+                        totalSec = (totalSec && totalSec < 10) ? '0' + totalSec : totalSec;
+
+                        $(timebar.class + ' ' + timebar.current).html(currMin + ' : ' + currSec);
+                        $(timebar.class + ' ' + timebar.total).html(totalMin + ' : ' + totalSec);
                     }
 
                     // if track playing
@@ -567,14 +599,21 @@ function runApp() {
                     }
                     // if ended
                     if (msg.onended) {
-                        makeAnm('next', function() {
-                            background.updateSession('' + background.nextSurah + '');
-                            $(next_meta).find(track_title).html(background.playerInfo[2][1]); // update next track
-                            $(next_meta).find(track_author).html(background.playerInfo[2][3] + ' / ' + background.playerInfo[2][4] + ' ' + background.allLangData.player.versesString); // update next track info
-                            background.x.src = background.playerInfo[1][2];
-                            background.x.load();
+                        if (background.localStorage.getItem('ZikrRepeatTrack')) {
+                            background.x.currentTime = 0;
                             background.x.play();
-                        });
+                            background.localStorage.removeItem('ZikrRepeatTrack');
+                            $(repeatBtn).removeClass(activeClass);
+                        } else {
+                            makeAnm('next', function() {
+                                background.updateSession('' + background.nextSurah + '');
+                                $(next_meta).find(track_title).html(background.playerInfo[2][1]); // update next track
+                                $(next_meta).find(track_author).html(background.playerInfo[2][3] + ' / ' + background.playerInfo[2][4] + ' ' + background.allLangData.player.versesString); // update next track info
+                                background.x.src = background.playerInfo[1][2];
+                                background.x.load();
+                                background.x.play();
+                            });
+                        }
                     }
                     // if loadstart
                     if (msg.onloadstart) {
@@ -598,6 +637,23 @@ function runApp() {
                     if (msg.oncanplay) {
                         $(player_track + '.' + activeClass).find(player_track_state).html(play_icon);
                     }
+                    // if error
+                    if (msg.onstalled) {
+                        // if loading fail(settings.json) : Run Error Script
+                        runErrorBG();
+                    }
+
+                    /* --------------------------------------------------- */
+                    /* --------------- Handling Errrors ------------------ */
+                    /* --------------------------------------------------- */
+                    // if loading readers avatars error
+                    $("img").error(function() {
+                        $(this).attr('src', defaultAvatarLocal);
+                    });
+
+                    /* --------------------------------------------------- */
+                    /* -------------- / Handling Errrors ----------------- */
+                    /* --------------------------------------------------- */
                 });
 
                 // Set Session
@@ -716,6 +772,8 @@ function runApp() {
                     /* Act on the event */
                     $(next + ', ' + prev).addClass(waiting_mode);
                     $(play_pause).addClass(waiting_mode);
+                    background.localStorage.removeItem('ZikrRepeatTrack');
+                    $(repeatBtn).removeClass(activeClass);
                 });
                 // Button Next Click Event
                 $(document).on('click', next, function(event) {
@@ -922,6 +980,8 @@ function runApp() {
                             background.x.load();
                             background.x.play();
                         });
+                        background.localStorage.removeItem('ZikrRepeatTrack');
+                        $(repeatBtn).removeClass(activeClass);
                     }
                     // P Key
                     if (e.which == 80 && e.shiftKey) {
@@ -934,18 +994,20 @@ function runApp() {
                             background.x.load();
                             background.x.play();
                         });
+                        background.localStorage.removeItem('ZikrRepeatTrack');
+                        $(repeatBtn).removeClass(activeClass);
                     }
                     // F Key
                     if (e.which == 70 && e.shiftKey) {
-                        background.x.currentTime = background.x.currentTime+10;
+                        background.x.currentTime = background.x.currentTime + 10;
                     }
                     // B Key
                     if (e.which == 66 && e.shiftKey) {
-                        background.x.currentTime = background.x.currentTime-10;
+                        background.x.currentTime = background.x.currentTime - 10;
                     }
                     // S Key
                     if (e.which == 19 && e.shiftKey && e.ctrlKey) {
-                        $(playlistFilter+' '+search.input).focus();
+                        $(playlistFilter + ' ' + search.input).focus();
                         return false;
                     }
                 });
@@ -991,7 +1053,12 @@ function runApp() {
                             secs = parseInt(parseInt(background.x.duration * (parseInt(e.offsetX / e.width * 100)) / 100)) % 60;
                             secs = (secs < 10) ? '0' + secs : secs;
                         }
-                        $(this).html(mins + ':' + secs);
+
+                        if (isNaN(mins)) {
+                            $(this).html(preload_icon);
+                        } else {
+                            $(this).html(mins + ' : ' + secs);
+                        }
                     });
                 });
                 // when mouse will leave progressbar : tooltip must be hidden
@@ -1013,9 +1080,12 @@ function runApp() {
                 /* -------------------------------------------------- */
                 // volume
                 $(document).on('click', vol.barClick, function(e) {
-                    e.height = $(this).outerHeight();
-                    console.log(parseInt((e.height - e.offsetY) / e.height * 100 / 10));
-                    volApp(parseInt((e.height - e.offsetY) / e.height * 100));
+                    e.width = $(this).outerWidth();
+                    if (background.rtl) {
+                        volApp(parseInt((e.width - e.offsetX) / e.width * 100));
+                    } else {
+                        volApp(parseInt(e.offsetX / e.width * 100));
+                    }
                 });
                 $(document).on('click', vol.icon, function(e) {
                     volApp(-1);
@@ -1023,6 +1093,20 @@ function runApp() {
                 /* -------------------------------------------------- */
                 /* ---------------- / Volume Option ----------------- */
                 /* -------------------------------------------------- */
+
+
+                // repeat section
+                $(document).on('click', repeatBtn, function() {
+                    if (background.localStorage.getItem('ZikrRepeatTrack')) {
+                        background.localStorage.removeItem('ZikrRepeatTrack');
+                        $(this).removeClass(activeClass);
+                    } else {
+                        background.localStorage.setItem('ZikrRepeatTrack', true);
+                        $(this).addClass(activeClass);
+                    }
+                });
+
+
             }).error(function() {
                 // if loading fail(app.html) : alert with error message
                 alert('Error Loading App File !!');

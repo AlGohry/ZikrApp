@@ -4,7 +4,7 @@ var x = new Audio();
 if (localStorage.userSettings) {
     // If This Is Registerd User : load app page
     // then load settings config file
-    $.getJSON('./assets/json/settings.json?v=' + new Date().getTime(), function(json) {
+    $.getJSON('http://zikrapp.s3.amazonaws.com/db/settings.json?v=' + new Date().getTime(), function(json) {
         // if successfully loaded : get settings object and add it to var
         allSettings = json; // this var has all settings object
     }).done(function() {
@@ -24,7 +24,7 @@ if (localStorage.userSettings) {
         langCode = (rtl) ? 'ar' : 'en'; // global language code
 
         // after loading setting page and getting current reader : load quran metadata file
-        $.getJSON('./assets/json/quran.json?v=' + new Date().getTime(), function(metadata) {
+        $.getJSON('http://zikrapp.s3.amazonaws.com/db/quran.json?v=' + new Date().getTime(), function(metadata) {
             // after loading metadata object : add it to global var
             allQuran = metadata; // this var has all Quran metadata object (114 surrah)
         }).done(function() {
@@ -84,7 +84,7 @@ if (localStorage.userSettings) {
                                 onplaying: true
                             });
                         };
-                        x.onvolumechange = function(){
+                        x.onvolumechange = function() {
                             port.postMessage({
                                 onvolumechange: true
                             });
@@ -125,6 +125,11 @@ if (localStorage.userSettings) {
                                 ontimeupdate: true
                             });
                         }
+                        x.onstalled = function() {
+                            port.postMessage({
+                                onstalled: true
+                            });
+                        };
 
 
 
@@ -206,7 +211,7 @@ if (localStorage.userSettings) {
     });
 } else {
     // If This Is New User : load settings object
-    $.getJSON('./assets/json/settings.json?v=' + new Date().getTime(), function(json) {
+    $.getJSON('http://zikrapp.s3.amazonaws.com/db/settings.json?v=' + new Date().getTime(), function(json) {
         // if successfully loaded : add all settings object to global var and setup the app
         allSettings = json; // this var has all language object
         lang = 0; // default language for first load (0 for arabic and 1 for english)

@@ -103,31 +103,26 @@ if (localStorage.userSettings) {
                         };
                         // send message to popup if track started loading
                         x.onloadstart = function() {
-                                port.postMessage({
-                                    onloadstart: true
-                                });
-                            }
-                            // send message to popup if track ready to play
+                            port.postMessage({
+                                onloadstart: true
+                            });
+                        };
+                        // send message to popup if track ready to play
                         x.oncanplay = function() {
-                                port.postMessage({
-                                    oncanplay: true
-                                });
-                            }
-                            // send message to popup if progress
+                            port.postMessage({
+                                oncanplay: true
+                            });
+                        };
+                        // send message to popup if progress
                         x.onprogress = function() {
-                                port.postMessage({
-                                    onprogress: true
-                                });
-                            }
-                            // send message to popup if track time update
+                            port.postMessage({
+                                onprogress: true
+                            });
+                        };
+                        // send message to popup if track time update
                         x.ontimeupdate = function() {
                             port.postMessage({
                                 ontimeupdate: true
-                            });
-                        }
-                        x.onstalled = function() {
-                            port.postMessage({
-                                onstalled: true
                             });
                         };
 

@@ -65,8 +65,8 @@
         <script id="shekhData" type="text/x-jquery-tmpl">
             <div class="avatar">
                 {{if shekhAvatar}}
-                <img src="${shekhAvatar}" alt=""> {{else}}
-                <img src="${defaultAvatar}" alt=""> {{/if}}
+                <img class="readerAvatar" src="${shekhAvatar}" alt=""> {{else}}
+                <img class="readerAvatar" src="${defaultAvatar}" alt=""> {{/if}}
             </div>
             <div class="shekh-data">
                 <h3 class="name">${shekhName}</h3>
@@ -174,7 +174,7 @@
                         <div class="mSelect">
                             <div class="current" value="${curr_reader_src}">
                                 <div class="reader-item">
-                                    <img class="reader-avatar" src="${curr_reader_img}" alt="">
+                                    <img class="readerAvatar reader-avatar" src="${curr_reader_img}" alt="">
                                     <div class="reader-info">
                                         <p class="reader-name">${curr_reader_name}</p>
                                         <p class="reader-country">${curr_reader_country}</p>
@@ -190,7 +190,7 @@
                                     {{each readerItem}}
                                     <div class="item ${$value['selected']}" value="${$value['key']}">
                                         <div class="reader-item">
-                                            <img class="reader-avatar" src="${$value['img']}" alt="">
+                                            <img class="readerAvatar reader-avatar" src="${$value['img']}" alt="">
                                             <div class="reader-info">
                                                 <p class="reader-name">${$value['name']}</p>
                                                 <p class="reader-country">${$value['country']}</p>

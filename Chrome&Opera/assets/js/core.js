@@ -637,17 +637,12 @@ function runApp() {
                     if (msg.oncanplay) {
                         $(player_track + '.' + activeClass).find(player_track_state).html(play_icon);
                     }
-                    // if error
-                    if (msg.onstalled) {
-                        // if loading fail(settings.json) : Run Error Script
-                        runErrorBG();
-                    }
 
                     /* --------------------------------------------------- */
                     /* --------------- Handling Errrors ------------------ */
                     /* --------------------------------------------------- */
                     // if loading readers avatars error
-                    $("img").error(function() {
+                    $("img.readerAvatar").error(function() {
                         $(this).attr('src', defaultAvatarLocal);
                     });
 
@@ -928,6 +923,7 @@ function runApp() {
                             background.localStorage.removeItem('ZikrCurrTrack');
                             background.localStorage.removeItem('ZikrCurrTime');
                         }
+                        background.localStorage.removeItem('ZikrRepeatTrack');
                         background.location.reload();
                     }, 1000);
                 });

@@ -4,7 +4,7 @@ Zikr app is an extension for browsers, it enables you to listen to Quran much mo
 
 # App Current Version 
 
-Version 2.0
+Version 3.0.4
 
 ## Starting Notes And Usage
 

@@ -11,20 +11,20 @@
 		"langTitleEx" : "Dili seç",
 		"playlistTitle": "Oynatma listesi",
 		"playlistTitleEx": "Bir görünüm seçin",
-		"asc": "Play Quran from start to end",
-		"desc": "Play Quran from end to start",
-		"random": "Play Quran Randomly",
-		"searchString": "Search by reader name or countery .."
+		"asc": "Yukarıdan aşağıya doğru",
+		"desc": "Aşağıdan yukarıya doğru",
+		"random": "Rastgele seçim",
+		"searchString": "Okuyucu veya şehirin ismine göre seç"
 	},
 	"about": {
-		"title": "Hakkında",
-		"appName": "Zikr App",
-		"appDesc": "Zikr app make it easy for you to listen Holy Quran much more faster and easier with a list of readers constantly renewed and possibility of requesting to add your favorite readers, The app is available in two languages Arabic and English with several options to play Quran playlist",
-		"appPartnersText": "In order to listen better and faster i used the following servers",
-		"appContactText": "For suggestions or to report a problem",
-		"partnerText": "Thanks for following sites to provide audio files, May God give them about us and Islam all the best",
+		"title": "hakkında",
+		"appName": "Zikr uygulaması",
+		"appDesc": "zikr uygulamasıyla hızlı ve kolay bir şekilde sürekli yenilenen bir kurra listesiyle  kuranı kerim dinleyebilirsin pek çok farklı dille donatılmış anında uygulamayla favori hafızlarının eklenmesi isteğinde bulunabilirsin kuran surelerini oynatma listesini düzenle ",
+		"appPartnersText": "Daha iyi ve daha hızlı i kullanılan aşağıdaki sunucuları dinlemek amacıyla",
+		"appContactText": "öneriler yada sorun bildirme",
+		"partnerText": "ses dosyalarının alındığı sitelere teşekkür ederiz.",
 		"updateText": "Güncelleme",
 		"facebookText": "Facebookta sayfamız",
-		"githubText": "Open source"
+		"githubText": "Github sayfamız"
 	}
 }

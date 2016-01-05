@@ -831,5 +831,13 @@
         "avatar": "http://zikrapp.s3.amazonaws.com/avatars/slman.jpg",
         "playlist": "http://zikrapp.s3.amazonaws.com/db/readers/slman.json",
         "rating": "3"
+    }, {
+        "name_en": "Mohamed Ref'at",
+        "name_ar": "محمد رفعت",
+        "country_en": "Egypt",
+        "country_ar": "مصر",
+        "avatar": "http://zikrapp.s3.amazonaws.com/avatars/ref3at.jpg",
+        "playlist": "http://zikrapp.s3.amazonaws.com/db/readers/ref3at.json",
+        "rating": "3"
     }]
 }

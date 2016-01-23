@@ -8,7 +8,7 @@ Version 3.0.4
 
 ## Starting Notes And Usage
 
-- There's folder to each browser contains all extension assets and basic files like manifest, background and popup.
+- There's folder to each platform (web and mobile)
 - Chrome and opera has a same API so i put them in one folder named Chrome Opera.
 - I will suggest this [url](https://developer.chrome.com/extensions/getstarted) for you if you don't know enough about chrome APIs
 

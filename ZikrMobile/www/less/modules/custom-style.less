@@ -1,0 +1,339 @@
+/* Empty. Add your own CSS if you like */
+
+body {
+    background-color: #111;
+    cursor: url('../img/finger.png'), auto;
+    // General View Style
+    ion-view,
+    .pane,
+    .menu {
+        background-color: #111;
+    }
+}
+
+#Zikr {
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    // navigation between screens
+    .screensNav {
+        background-color: #121212;
+        border: 0;
+        .box-shadow(0 0 20px rgba(0, 0, 0, 0.2));
+        .display(flex);
+        .align-items(center);
+        .justify-content(space-between);
+        padding: 10px 20px;
+        .text {
+            color: #555;
+            margin: 0;
+        }
+        .saveButton {
+            padding: 0px 20px;
+            min-height: auto;
+            line-height: 20px;
+        }
+    }
+    // Player Screen 
+    #player-screen {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-image: url(../img/player.jpg);
+        .background-size(cover);
+        .display(flex);
+        .align-items(center);
+        .justify-content(center);
+        .flex-direction(column);
+        .menuCalls {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            color: #FFF;
+            font-size: 30px;
+            .display(flex);
+            .align-items(center);
+            .justify-content(space-between);
+            padding: 30px;
+            z-index: 2;
+        }
+        #tracks-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            // Player Meta
+            .player-meta {
+                width: 100%;
+                text-align: center;
+                margin-top: 40px;
+                .name {
+                    color: #FFF;
+                }
+                .details {
+                    color: #DDD;
+                }
+            }
+        }
+        .timerScreen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 100%;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.95);
+            .display(flex);
+            .align-items(center);
+            .justify-content(center);
+            z-index: 3;
+            .transition(all 0.5s);
+            .text {
+                color: #FFF;
+                opacity: 0;
+                .transition(all 0.5s);
+            }
+            &.active {
+                bottom: 150px;
+                .text {
+                    opacity: 1;
+                }
+            }
+        }
+        .fixed-blocks {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            // player control
+            .player-control {
+                width: 100%;
+                padding-bottom: 40px;
+                padding-top: 20px;
+                .buttons {
+                    cursor: pointer;
+                    .display(flex);
+                    .align-items(center);
+                    .justify-content(space-between);
+                    padding: 0 40px;
+                    .control-btn {
+                        color: rgba(255, 255, 255, 0.5);
+                        border: 1px solid rgba(255, 255, 255, 0.2);
+                        font-size: 20px;
+                        .border-radius(100%);
+                        width: 40px;
+                        height: 40px;
+                        .display(flex);
+                        .align-items(center);
+                        .justify-content(center);
+                        &.repeat,
+                        &.download {
+                            font-size: 15px;
+                            width: 30px;
+                            height: 30px;
+                        }
+                        &.play-toggle {
+                            font-size: 50px;
+                            width: 70px;
+                            height: 70px;
+                            color: rgba(255, 255, 255, 0.8);
+                            i.loadingState {
+                                .animation(spin 0.5s linear infinite);
+                                .keyframes(~'spin, 0%{ transform: rotate(0deg); } 100%{ transform: rotate(360deg); }');
+                            }
+                        }
+                        &:active,
+                        &.active {
+                            color: rgba(0, 0, 0, 0.95);
+                            border-color: rgba(0, 0, 0, 0.95);
+                            background-color: rgba(255, 255, 255, 0.5);
+                            ;
+                        }
+                    }
+                }
+            }
+            .progress-bar {
+                width: 90%;
+                margin: auto;
+                .border-radius(20px);
+                height: 5px;
+                background-color: rgba(255, 255, 255, 0.1);
+                .progress {
+                    .border-radius(20px);
+                    height: 100%;
+                    width: 0;
+                    position: relative;
+                    background-color: rgba(255, 255, 255, 0.6);
+                    .ball {
+                        @size: 20;
+                        .transition(all 0.1s);
+                        width: unit(@size, px);
+                        height: unit(@size, px);
+                        background-color: #DDD;
+                        .border-radius(100%);
+                        position: absolute;
+                        right: 0;
+                        top: 50%;
+                        margin-right: @size/2*-1px;
+                        margin-top: @size/2*-1px;
+                        &:active { 
+                            @size: 35;
+                            width: unit(@size, px);
+                            height: unit(@size, px);
+                            margin-right: @size/2*-1px;
+                            margin-top: @size/2*-1px;
+                        }
+                    }
+                }
+            }
+            // Reciter Block
+            .reciter-block {
+                .display(flex);
+                .align-items(center);
+                .justify-content(center);
+                .flex-direction(column);
+                width: 100%;
+                padding: 20px;
+                margin-bottom: 20px;
+                .avatar {
+                    background-repeat: no-repeat;
+                    background-position: 50% 50%;
+                    img {
+                        .border-radius(5px);
+                        border: 3px solid rgba(255, 255, 255, 0.5);
+                        .box-shadow(0 0 0 5px rgba(255, 255, 255, 0.2));
+                    }
+                }
+                .info {
+                    margin-top: 20px;
+                    text-align: center;
+                    .name {
+                        color: #DDD;
+                        margin: 0;
+                    }
+                    .country {
+                        color: rgba(255, 255, 255, 0.5);
+                    }
+                    .rating {
+                        color: rgba(255, 255, 255, 0.3)
+                    }
+                }
+            }
+        }
+    }
+}
+
+#recitersView {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+#settings-screen {
+    background-color: #111;
+    .background-size(cover);
+    background-position: 50% 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    #reciters {
+        .reciter-row {
+            padding: 10px;
+            position: relative;
+            .display(flex);
+            .justify-content(center);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            .transition(all 0.5s);
+            .avatar {
+                margin-right: 20px;
+                width: 40px;
+                height: 40px;
+                border: 2px solid rgba(255, 255, 255, 0.5);
+                .border-radius(5px);
+                overflow: hidden;
+                .transition(all 0.5s);
+                img {
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+            .info {
+                .flex(1);
+                .name {
+                    margin: 0;
+                    margin-top: 5px;
+                    color: #999;
+                }
+                .country {
+                    color: #888;
+                    font-size: 12px;
+                }
+            }
+            .checkmark {
+                .transition(all 0.5s);
+                position: absolute;
+                right: 20px;
+                color: rgba(255, 255, 255, 0.05);
+                width: 35px;
+                height: 35px;
+                .border-radius(100%);
+                background-color: rgba(255, 255, 255, 0.05);
+                .display(flex);
+                .align-items(center);
+                .justify-content(center);
+                font-size: 15px;
+                margin-top: 5px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            &.selected {
+                background-color: rgba(0, 0, 0, 0.95);
+                .info {
+                    .name {
+                        color: #FFF;
+                    }
+                }
+                .checkmark {
+                    color: #FFF;
+                }
+                &:active {
+                    background-color: rgba(0, 0, 0, 0.95);
+                    .info {
+                        .name {
+                            color: #FFF;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Loading Screen
+.loading-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    .loading {
+        .flex(1);
+        .display(flex);
+        .align-items(center);
+        .justify-content(center);
+        .flex-direction(column);
+        .transition(all 0.5s);
+        .border-radius(0);
+        background-color: transparent;
+        height: 100%;
+        // Svg
+        .spinner {
+            svg {
+                stroke: #FFF;
+            }
+        }
+    }
+}

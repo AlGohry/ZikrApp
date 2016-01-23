@@ -1,0 +1,24 @@
+<ion-view title="Zikr | Settings">
+    <div id="settings-screen">
+        <!-- <ion-header-bar class="screensNav">
+            <p class="text">Choose Your Favorite Reciter</p>
+            <button class="button button-dark button-small saveButton" ng-click="save()" ng-disabled="!choosed">
+                <i class="ion-checkmark"></i> Save
+            </button>
+        </ion-header-bar> -->
+        <ion-content id="reciters">
+            <div ng-class="{selected : {{ $index }} === isActive }" ng-click="currentReciter($index)" class="reciter-row" ng-repeat="reciter in reciters">
+                <div class="checkmark">
+                    <i class="ion ion-checkmark"></i>
+                </div>
+                <div class="avatar">
+                    <img ng-src="{{ reciter.avatar }}">
+                </div>
+                <div class="info">
+                    <h6 class="name">{{ reciter.name }}</h6>
+                    <div class="country">{{ reciter.country }}</div>
+                </div>
+            </div>
+        </ion-content>
+    </div>
+</ion-view>

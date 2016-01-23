@@ -1,0 +1,65 @@
+<ion-view view-title="Zikr Player">
+    <div id="player-screen">
+        <div class="menuCalls">
+            <div class="menu-call" on-tap="toggleLeft()">
+                <i class="ion ion-navicon"></i>
+            </div>
+            <div class="menu-call">
+                <i class="ion ion-ios-information"></i>
+            </div>
+        </div>
+        <ion-slide-box id="tracks-slider" does-continue="true" show-pager="false" auto-play="false" ng-if="tracks" on-slide-changed="play(''+$index+'')">
+            <ion-slide ng-repeat="track in tracks">
+                <div class="player-meta">
+                    <h2 class="name">
+                        {{ track.name }}
+                    </h2>
+                    <div class="details">
+                        {{ track.place }} / {{ track.verses }} {{ track.txtVerses }}
+                    </div>
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+        <div class="timerScreen" ng-class="{active: showBigTimer}">
+            <h1 class="text">{{TrackCurrent}} / {{TrackDuration}}</h1>
+        </div>
+        <div class="fixed-blocks">
+            <div class="reciter-block">
+                <div class="avatar" on-tap="toggleLeft()">
+                    <img ng-src="{{reciter.avatar}}" alt="">
+                </div>
+                <div class="info">
+                    <h5 class="name">{{ reciter.name }}</h5>
+                    <div class="country">{{ reciter.country }}</div>
+                    <!-- <div class="rating">{{ reciter.rating }}</div> -->
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div ng-style="{'width': progress+'%'}" class="progress">
+                    <div on-release="onProgressBallRelease()" 
+                         on-touch="onProgressBallTouch()" 
+                         on-drag="onProgressBallDrag($event)"
+                         class="ball"></div>
+                </div>
+            </div>
+            <div class="player-control">
+                <div class="buttons">
+                    <div class="control-btn repeat" ng-class="{active: repeatOnce}" on-tap="repeat()">
+                        <i class="ion ion-android-refresh"></i>
+                    </div>
+                    <div class="control-btn prev" ng-click="prevTrack()">
+                        <i class="ion ion-ios-rewind"></i>
+                    </div>
+                    <div class="control-btn play-toggle" ng-bind-html="playIcon" ng-click="play()">
+                    </div>
+                    <div class="control-btn next" ng-click="nextTrack()">
+                        <i class="ion ion-ios-fastforward"></i>
+                    </div>
+                    <div class="control-btn download">
+                        <i class="ion ion-android-download"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-view>

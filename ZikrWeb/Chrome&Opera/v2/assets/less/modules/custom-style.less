@@ -1,0 +1,164 @@
+/* Code Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    .box-sizing(border-box);
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden !important;
+}
+
+body {
+    font-family: @ltrFont;
+    background-color: #7289d9;
+    // background-image: url(../imgs/bg.png);
+    .display(flex);
+    .align-items(center);
+    .justify-content(center);
+    // LRT Elements
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: @ltrFontBold;
+    }
+    a,
+    a:focus,
+    button,
+    button:focus {
+        outline: none !important;
+    }
+    button,
+    input {
+        font-family: @ltrFont
+    }
+    // RTL Version
+    &.rtl {
+        direction: rtl;
+        text-align: right;
+        font-family: @rtlFont;
+        // Elements
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: @rtlFontLight
+        }
+        a,
+        input {
+            font-family: @rtlFont;
+        }
+    }
+}
+
+// Defind Global Variabls
+@recitersColor: #1d2124;
+@playlistColor: #2c2f34;
+@lightenColor: #3498db;
+@primaryRadius: 3px;
+// Zikr App V2 Styles
+ZikrApp {
+    width: 650px;
+    height: 401px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.2);
+    .display(flex);
+    .border-radius(@primaryRadius);
+    border: 1px solid @recitersColor;
+    // Player Section
+    reciters {
+        min-width: 50px;
+        .display(flex);
+        .flex-direction(column);
+        .align-items(center);
+        padding: 5px 0;
+        background-color: @recitersColor;
+        // Progress Bar
+        // Add Button 
+        .add-playlist {
+            background-color: transparent;
+            width: 35px;
+            height: 35px;
+            .border-radius(100%);
+            color: #515558;
+            border: 2px solid #515558;
+        }
+        // Controls
+        controls {
+            .display(flex);
+            margin-top: auto;
+            // options
+            .display(flex);
+            .align-items(center);
+            .justify-content(center);
+            padding: 20px;
+            .option {
+                .display(flex);
+                .align-items(center);
+                .justify-content(center);
+                background-color: transparent;
+                color: @lightenColor;
+                width: 40px;
+                height: 40px;
+                .border-radius(100%);
+                border: 2px solid @lightenColor;
+                cursor: pointer;
+                .transition(all 0.5s);
+                background-color: darken(@playlistColor, 2%);
+                .box-shadow(0 0 0 5px darken(@playlistColor, 2%));
+                &.play {
+                    width: 50px;
+                    height: 50px;
+                    position: relative;
+                    z-index: 10;
+                }
+                &.next {
+                    margin-left: -85px;
+                }
+                &.prev {
+                    margin-right: -85px;
+                    position: relative;
+                    z-index: 9;
+                }
+                &.down {
+                    margin-right: 75px;
+                    .box-shadow(none);
+                }
+                &.loop {
+                    margin-left: 75px;
+                    .box-shadow(none);
+                }
+                // HOVER EFFECT
+                &:hover {
+                    background-color: lighten(@recitersColor, 5%);
+                }
+                // ACTIVE EFFECT
+                &:active,
+                &.active {
+                    background-color: darken(@recitersColor, 40%);
+                    border-color: darken(@lightenColor, 30%);
+                    pointer-events: none;
+                }
+            }
+        }
+    }
+    // Playlist Section
+    playlist {
+        .flex(1); 
+        .display(flex);
+        background-color: darken(@playlistColor, 2%);
+    }
+}

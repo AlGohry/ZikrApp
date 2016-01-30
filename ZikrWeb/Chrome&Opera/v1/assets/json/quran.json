@@ -1,0 +1,800 @@
+{
+    "1": {
+        "name_en": "AlFatihah",
+        "name_ar": "الفاتحة",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "7"
+    },
+    "2": {
+        "name_en": "AlBaqarah",
+        "name_ar": "البقرة",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "286"
+    },
+    "3": {
+        "name_en": "Al'Imran",
+        "name_ar": "آل عمران",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "200"
+    },
+    "4": {
+        "name_en": "AnNisa'",
+        "name_ar": "النساء",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "176"
+    },
+    "5": {
+        "name_en": "AlMa'idah",
+        "name_ar": "المائدة",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "120"
+    },
+    "6": {
+        "name_en": "AlAn'am",
+        "name_ar": "الأنعام",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "165"
+    },
+    "7": {
+        "name_en": "AlA'raf",
+        "name_ar": "الأعراف",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "206"
+    },
+    "8": {
+        "name_en": "AlAnfal",
+        "name_ar": "الأنفال",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "75"
+    },
+    "9": {
+        "name_en": "AtTaubah",
+        "name_ar": "التوبة",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "129"
+    },
+    "10": {
+        "name_en": "Yunus",
+        "name_ar": "يونس",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "109"
+    },
+    "11": {
+        "name_en": "Hud",
+        "name_ar": "هود",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "123"
+    },
+    "12": {
+        "name_en": "Yusuf",
+        "name_ar": "يوسف",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "111"
+    },
+    "13": {
+        "name_en": "ArRa'd",
+        "name_ar": "الرعد",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "43"
+    },
+    "14": {
+        "name_en": "Ibrahim",
+        "name_ar": "إبراهيم",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "52"
+    },
+    "15": {
+        "name_en": "AlHijr",
+        "name_ar": "الحجر",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "99"
+    },
+    "16": {
+        "name_en": "AnNahl",
+        "name_ar": "النحل",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "128"
+    },
+    "17": {
+        "name_en": "AlIsra'",
+        "name_ar": "الإسراء",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "111"
+    },
+    "18": {
+        "name_en": "AlKahf",
+        "name_ar": "الكهف",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "110"
+    },
+    "19": {
+        "name_en": "Maryam",
+        "name_ar": "مريم",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "98"
+    },
+    "20": {
+        "name_en": "TaHa",
+        "name_ar": "طه",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "135"
+    },
+    "21": {
+        "name_en": "AlAnbiya'",
+        "name_ar": "الأنبياء",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "112"
+    },
+    "22": {
+        "name_en": "AlHajj",
+        "name_ar": "الحج",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "78"
+    },
+    "23": {
+        "name_en": "AlMu'minun",
+        "name_ar": "المؤمنون",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "118"
+    },
+    "24": {
+        "name_en": "AnNur",
+        "name_ar": "النور",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "64"
+    },
+    "25": {
+        "name_en": "AlFurqan",
+        "name_ar": "الفرقان",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "77"
+    },
+    "26": {
+        "name_en": "AshShu'ara'",
+        "name_ar": "الشعراء",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "227"
+    },
+    "27": {
+        "name_en": "AnNaml",
+        "name_ar": "النمل",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "93"
+    },
+    "28": {
+        "name_en": "AlQasas",
+        "name_ar": "القصص",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "88"
+    },
+    "29": {
+        "name_en": "AlAnkabut",
+        "name_ar": "العنكبوت",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "69"
+    },
+    "30": {
+        "name_en": "ArRum",
+        "name_ar": "الروم",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "60"
+    },
+    "31": {
+        "name_en": "Luqman",
+        "name_ar": "لقمان",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "34"
+    },
+    "32": {
+        "name_en": "AsSajdah",
+        "name_ar": "السجدة",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "30"
+    },
+    "33": {
+        "name_en": "AlAhzab",
+        "name_ar": "الأحزاب",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "73"
+    },
+    "34": {
+        "name_en": "Saba'",
+        "name_ar": "سبأ",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "54"
+    },
+    "35": {
+        "name_en": "Fatir",
+        "name_ar": "فاطر",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "45"
+    },
+    "36": {
+        "name_en": "YaSin",
+        "name_ar": "يس",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "83"
+    },
+    "37": {
+        "name_en": "AsSaffat",
+        "name_ar": "الصافات",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "182"
+    },
+    "38": {
+        "name_en": "Sad",
+        "name_ar": "ص",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "88"
+    },
+    "39": {
+        "name_en": "AzZumar",
+        "name_ar": "الزمر",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "75"
+    },
+    "40": {
+        "name_en": "Ghafir",
+        "name_ar": "غافر",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "85"
+    },
+    "41": {
+        "name_en": "Fussilat",
+        "name_ar": "فصلت",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "54"
+    },
+    "42": {
+        "name_en": "AshShura",
+        "name_ar": "الشورى",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "53"
+    },
+    "43": {
+        "name_en": "AzZukhruf",
+        "name_ar": "الزخرف",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "89"
+    },
+    "44": {
+        "name_en": "AdDukhan",
+        "name_ar": "الدخان",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "59"
+    },
+    "45": {
+        "name_en": "AlJathiyah",
+        "name_ar": "الجاثية",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "37"
+    },
+    "46": {
+        "name_en": "AlAhqaf",
+        "name_ar": "الأحقاف",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "35"
+    },
+    "47": {
+        "name_en": "Muhammad",
+        "name_ar": "محمد",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "38"
+    },
+    "48": {
+        "name_en": "AlFath",
+        "name_ar": "الفتح",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "29"
+    },
+    "49": {
+        "name_en": "AlHujurat",
+        "name_ar": "الحجرات",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "18"
+    },
+    "50": {
+        "name_en": "Qaf",
+        "name_ar": "ق",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "45"
+    },
+    "51": {
+        "name_en": "AdhDhariyat",
+        "name_ar": "الذاريات",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "60"
+    },
+    "52": {
+        "name_en": "AtTur",
+        "name_ar": "الطور",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "49"
+    },
+    "53": {
+        "name_en": "AnNajm",
+        "name_ar": "النجم",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "62"
+    },
+    "54": {
+        "name_en": "Qamar",
+        "name_ar": "القمر",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "55"
+    },
+    "55": {
+        "name_en": "ArRahman",
+        "name_ar": "الرحمن",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "78"
+    },
+    "56": {
+        "name_en": "AlWaqi'ah",
+        "name_ar": "الواقعة",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "96"
+    },
+    "57": {
+        "name_en": "AlHadid",
+        "name_ar": "الحديد",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "29"
+    },
+    "58": {
+        "name_en": "AlMujadilah",
+        "name_ar": "المجادلة",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "22"
+    },
+    "59": {
+        "name_en": "AlHashr",
+        "name_ar": "الحشر",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "24"
+    },
+    "60": {
+        "name_en": "AlMumtahanah",
+        "name_ar": "الممتحنة",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "13"
+    },
+    "61": {
+        "name_en": "AsSaff",
+        "name_ar": "الصف",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "14"
+    },
+    "62": {
+        "name_en": "AlJumu'ah",
+        "name_ar": "الجمعة",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "11"
+    },
+    "63": {
+        "name_en": "AlMunafiqun",
+        "name_ar": "المنافقون",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "11"
+    },
+    "64": {
+        "name_en": "AtTaghabun",
+        "name_ar": "التغابن",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "18"
+    },
+    "65": {
+        "name_en": "AtTalaq",
+        "name_ar": "الطلاق",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "12"
+    },
+    "66": {
+        "name_en": "AtTahrim",
+        "name_ar": "التحريم",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "12"
+    },
+    "67": {
+        "name_en": "AlMulk",
+        "name_ar": "الملك",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "30"
+    },
+    "68": {
+        "name_en": "AlQalam",
+        "name_ar": "القلم",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "52"
+    },
+    "69": {
+        "name_en": "AlHaqqah",
+        "name_ar": "الحاقة",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "52"
+    },
+    "70": {
+        "name_en": "AlMa'arij",
+        "name_ar": "المعارج",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "44"
+    },
+    "71": {
+        "name_en": "Nuh",
+        "name_ar": "نوح",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "28"
+    },
+    "72": {
+        "name_en": "AlJinn",
+        "name_ar": "الجن",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "28"
+    },
+    "73": {
+        "name_en": "AlMuzzammil",
+        "name_ar": "المزمل",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "20"
+    },
+    "74": {
+        "name_en": "AlMuddaththir",
+        "name_ar": "المدثر",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "56"
+    },
+    "75": {
+        "name_en": "AlQiyamah",
+        "name_ar": "القيامة",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "40"
+    },
+    "76": {
+        "name_en": "AlInsan",
+        "name_ar": "الإنسان",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "31"
+    },
+    "77": {
+        "name_en": "AlMursalat",
+        "name_ar": "المرسلات",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "50"
+    },
+    "78": {
+        "name_en": "AnNaba'",
+        "name_ar": "النبأ",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "40"
+    },
+    "79": {
+        "name_en": "AnNazi'at",
+        "name_ar": "النازعات",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "46"
+    },
+    "80": {
+        "name_en": "Abasa",
+        "name_ar": "عبس",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "42"
+    },
+    "81": {
+        "name_en": "AtTakwir",
+        "name_ar": "التكوير",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "29"
+    },
+    "82": {
+        "name_en": "AlInfitar",
+        "name_ar": "الانفطار",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "19"
+    },
+    "83": {
+        "name_en": "AlMutaffifin",
+        "name_ar": "المطففين",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "36"
+    },
+    "84": {
+        "name_en": "AlInshiqaq",
+        "name_ar": "الانشقاق",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "25"
+    },
+    "85": {
+        "name_en": "AlBuruj",
+        "name_ar": "البروج",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "22"
+    },
+    "86": {
+        "name_en": "AtTariq",
+        "name_ar": "الطارق",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "17"
+    },
+    "87": {
+        "name_en": "AlA'la",
+        "name_ar": "الأعلى",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "19"
+    },
+    "88": {
+        "name_en": "AlGhashiyah",
+        "name_ar": "الغاشية",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "26"
+    },
+    "89": {
+        "name_en": "AlFajr",
+        "name_ar": "الفجر",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "30"
+    },
+    "90": {
+        "name_en": "AlBalad",
+        "name_ar": "البلد",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "20"
+    },
+    "91": {
+        "name_en": "AshShams",
+        "name_ar": "الشمس",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "15"
+    },
+    "92": {
+        "name_en": "AlLail",
+        "name_ar": "الليل",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "21"
+    },
+    "93": {
+        "name_en": "AdDuha",
+        "name_ar": "الضحى",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "11"
+    },
+    "94": {
+        "name_en": "AshSharh",
+        "name_ar": "الشرح",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "8"
+    },
+    "95": {
+        "name_en": "AtTin",
+        "name_ar": "التين",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "8"
+    },
+    "96": {
+        "name_en": "AlAlaq",
+        "name_ar": "العلق",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "19"
+    },
+    "97": {
+        "name_en": "AlQadr",
+        "name_ar": "القدر",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "5"
+    },
+    "98": {
+        "name_en": "AlBayyinah",
+        "name_ar": "البينة",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "8"
+    },
+    "99": {
+        "name_en": "AzZalzalah",
+        "name_ar": "الزلزلة",
+        "place_en": "Medina",
+        "place_ar": "مدنية",
+        "verses": "8"
+    },
+    "100": {
+        "name_en": "AlAadiyat",
+        "name_ar": "العاديات",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "11"
+    },
+    "101": {
+        "name_en": "AlQari'ah",
+        "name_ar": "القارعة",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "11"
+    },
+    "102": {
+        "name_en": "AtTakathur",
+        "name_ar": "التكاثر",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "8"
+    },
+    "103": {
+        "name_en": "AlAsr",
+        "name_ar": "العصر",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "3"
+    },
+    "104": {
+        "name_en": "AlHumazah",
+        "name_ar": "الهمزة",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "9"
+    },
+    "105": {
+        "name_en": "AlFil",
+        "name_ar": "الفيل",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "5"
+    },
+    "106": {
+        "name_en": "Quraish",
+        "name_ar": "قريش",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "4"
+    },
+    "107": {
+        "name_en": "AlMa'un",
+        "name_ar": "الماعون",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "7"
+    },
+    "108": {
+        "name_en": "AlKauthar",
+        "name_ar": "الكوثر",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "3"
+    },
+    "109": {
+        "name_en": "AlKafirun",
+        "name_ar": "الكافرون",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "6"
+    },
+    "110": {
+        "name_en": "AnNasr",
+        "name_ar": "النصر",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "3"
+    },
+    "111": {
+        "name_en": "AlMasad",
+        "name_ar": "المسد",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "5"
+    },
+    "112": {
+        "name_en": "AlIkhlas",
+        "name_ar": "الإخلاص",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "4"
+    },
+    "113": {
+        "name_en": "AlFalaq",
+        "name_ar": "الفلق",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "5"
+    },
+    "114": {
+        "name_en": "AnNas",
+        "name_ar": "الناس",
+        "place_en": "Mecca",
+        "place_ar": "مكية",
+        "verses": "6"
+    }
+}

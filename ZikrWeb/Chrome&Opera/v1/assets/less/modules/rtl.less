@@ -1,0 +1,196 @@
+.rtl {
+    text-align: right;
+    direction: rtl;
+    line-height: 1.1;
+    #zikr {
+        .page {
+            left: auto;
+            right: 0;
+            &.player-page {
+                opacity: 1;
+                .player-screen {
+                    background-image: url(../imgs/cover_rtl.jpg);
+                    background-position: 80% 50%;
+                    .player-options {
+                        direction: ltr;
+                    }
+                    .progress {
+                        .buffer {
+                            left: auto;
+                            right: 0;
+                        }
+                        .stream {
+                            left: auto;
+                            right: 0;
+                        }
+                    }
+                }
+                .player-playlist {
+                    .search {
+                        padding-right: 10px;
+                        padding-left: 0;
+                        .search-input {
+                            margin-left: 0px;
+                            margin-right: 10px;
+                        }
+                    }
+                    .track {
+                        .track-id {
+                            border-right: 0px solid rgba(255, 255, 255, 0.04);
+                            border-left: 1px solid rgba(255, 255, 255, 0.04);
+                        }
+                        &.active {
+                            .track-state {
+                                border-left: 0px solid rgba(255, 255, 255, 0.04);
+                                border-right: 1px solid rgba(255, 255, 255, 0.04);
+                            }
+                        }
+                    }
+                }
+                .timebar {
+                    .timeblock {
+                        border-left: 0px solid rgba(255, 255, 255, 0.05);
+                        border-right: 1px solid rgba(255, 255, 255, 0.05);
+                        padding-left: 0px;
+                        padding-right: 10px;
+                        .total {
+                            font-size: 11px;
+                        }
+                    }
+                    .vol-sec {
+                        margin-left: 0;
+                        .vol-icon {
+                            margin-right: 0px;
+                            margin-left: 10px;
+                        }
+                        &:hover {
+                            margin-right: 0px;
+                            margin-left: 10px;
+                        }
+                    }
+                }
+                .sheck-section {
+                    .avatar {
+                        margin-right: 0px;
+                        margin-left: 10px;
+                    }
+                }
+            }
+            // Custom About Page Style
+            &.about-page {
+                left: auto;
+                right: -300px;
+                .exit {
+                    .refresh {
+                        margin-right: 0px;
+                        margin-left: 10px;
+                        i {
+                            margin-right: 0px;
+                            margin-left: 5px;
+                        }
+                    }
+                }
+                .page-head {
+                    .exit {
+                        .save {
+                            margin-right: 0px;
+                            margin-left: 10px;
+                        }
+                    }
+                    .pageIcon {
+                        margin-right: 0px;
+                        margin-left: 5px;
+                    }
+                }
+            }
+            &.settings-page {
+                left: auto;
+                right: 300px;
+                .page-head {
+                    .exit {
+                        .save {
+                            margin-right: 0px;
+                            margin-left: 10px;
+                        }
+                        .refresh {
+                            margin-right: 10px;
+                            margin-left: 0px;
+                        }
+                    }
+                    .pageIcon {
+                        margin-right: 0px;
+                        margin-left: 5px;
+                    }
+                }
+                .page-content {
+                    #wrap {
+                        .setting-row {
+                            .option-label {
+                                .label-icon {
+                                    margin-right: 0px;
+                                    margin-left: 10px;
+                                }
+                            }
+                            .mSelect {
+                                .current {
+                                    .box-shadow(-1px -1px 1px rgba(0, 0, 0, 0.2));
+                                }
+                                .options {
+                                    .search {
+                                        .search-input {
+                                            margin-left: 0px;
+                                            margin-right: 10px;
+                                        }
+                                    }
+                                    .style-scroll {
+                                        top: 41px;
+                                    }
+                                }
+                            }
+                            &#reader-row {
+                                .reader-item {
+                                    .reader-avatar {
+                                        margin-right: 0;
+                                        margin-left: 10px;
+                                    }
+                                }
+                                .current {
+                                    padding-right: 15px;
+                                    padding-left: 15px;
+                                    .reader-item {
+                                        .flex-direction(row);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                &.newUser {
+                    left: auto;
+                    right: 0;
+                }
+            }
+        }
+        &.active-about {
+            .about-page {
+                left: auto;
+                right: 0;
+            }
+            .player-page {
+                left: auto;
+                right: 300px;
+            }
+        }
+        // For Settings Page
+        &.active-settings {
+            .settings-page {
+                left: auto;
+                right: 0;
+            }
+            .player-page {
+                left: auto;
+                right: -300px;
+            }
+        }
+    }
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/zikr.min.css">
+    <title>ZikrApp</title>
+</head>
+
+<body>
+    <div id="ZikrApp">
+        <div class="header">
+            <h2 class="logo">ZikrApp</h2>
+        </div>
+        <!-- /.header -->
+        <div class="main">
+            <div class="reciters">
+                <div class="reciters-list style-scroll">
+                    <div class="reciter-item" v-for="reciter in reciters">
+                        <div class="avatar" v-bind:style="{'background-image': 'url('+reciter.avatar+')'}"></div>
+                        <div class="info">
+                            <div class="name">{{ reciter.name_en }}</div>
+                            <div class="country">{{ reciter.country_en }}</div>
+                        </div>
+                    </div>
+                    <!-- /.reciter-item -->
+                </div>
+                <!-- /.reciters-list -->
+            </div>
+            <!-- /.reciters -->
+            <div class="panel playlist">
+                <div class="tracks-list">
+                    <div class="track-item" v-for="reciter in reciters">
+                        <div class="number">001</div>
+                        <div class="info">
+                            <div class="name">Al Fatiha</div>
+                            <div class="time">08:30 </div>
+                        </div>
+                        <div class="track-options">
+                            <div class="button-item play"><i class="fa fa-pause"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.playlist -->
+        </div>
+        <!-- /.main -->
+        <div class="player">
+            <div class="player-buttons">
+                <div class="button-item prev"><i class="fa fa-step-backward"></i></div>
+                <div class="button-item play"><i class="fa fa-pause"></i></div>
+                <div class="button-item next"><i class="fa fa-step-forward"></i></div>
+            </div>
+            <div class="player-options">
+                <div class="option-item repeat"><i class="fa fa-repeat"></i></div>
+            </div>
+            <div class="prog-sec">
+                <div class="progress-wrap">
+                    <div class="track">
+                        <div class="info">
+                            001 - Al-Fatiha <span class="reciter">/ Al Shatri (Saudia Arabia)</span>
+                        </div>
+                        <div class="time">
+                            <span class="current">03:00</span> /
+                            <span class="total">38:00</span>
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <div class="front"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-options">
+                <div class="option-item volume"><i class="fa fa-volume-up"></i></div>
+            </div>
+        </div>
+        <!-- /.player -->
+    </div>
+    <!-- / #ZikrApp -->
+    <!-- Js -->
+    <script src="ZikrApp.js"></script>
+</body>
+
+</html>

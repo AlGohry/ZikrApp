@@ -1,0 +1,286 @@
+/* Code Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    .box-sizing(border-box);
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden !important;
+}
+
+body {
+    font-family: @ltrFont;
+    background-color: #222;
+    // background-image: url(../imgs/bg.png);
+    .display(flex);
+    .align-items(center);
+    .justify-content(center);
+    // LRT Elements
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: @ltrFontBold;
+    }
+    a,
+    a:focus,
+    button,
+    button:focus {
+        outline: none !important;
+    }
+    button,
+    input {
+        font-family: @ltrFont
+    }
+    // RTL Version
+    &.rtl {
+        direction: rtl;
+        text-align: right;
+        font-family: @rtlFont;
+        // Elements
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: @rtlFontLight
+        }
+        a,
+        input {
+            font-family: @rtlFont;
+        }
+    }
+}
+
+// Colors Variabls
+@recitersColor: #1d2124;
+@playlistColor: #2c2f34;
+@lightenColor: #3498db;
+// Zikr App V2 Styles
+#ZikrApp {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.2);
+    .display(flex);
+    .flex-direction(column);
+    // Header Section
+    .header {
+        background-color: #2c3e50;
+        min-height: 70px;
+        position: relative;
+        z-index: 1;
+        .display(flex);
+        .align-items(center);
+        .logo {
+            margin: 0 20px;
+            color: #FFF;
+        }
+    }
+    .player {
+        background-color: #121212;
+        position: relative;
+        z-index: 1;
+        .box-shadow(0 0 60px rgba(0, 0, 0, 0.8));
+        .display(flex);
+        padding: 15px 20px;
+        .player-options {
+            .display(flex);
+            color: rgba(255, 255, 255, 0.4);
+            .option-item {
+                margin: 0 10px;
+                cursor: pointer;
+                .align-items(center);
+                .display(flex);
+            }
+        }
+        .prog-sec {
+            .display(flex);
+            .flex(1);
+            .justify-content(space-between);
+            .align-items(center);
+            font-size: 14px;
+            padding: 0 5px;
+            .progress-wrap {
+                margin: 0 20px;
+                margin-right: 10px;
+                .flex(1);
+                .track {
+                    .display(flex);
+                    .info {
+                        .flex(1);
+                        margin-bottom: 10px;
+                        color: rgba(255, 255, 255, 0.5);
+                        .reciter {
+                            color: rgba(255, 255, 255, 0.2);
+                            font-size: 12px;
+                        }
+                    }
+                    .time {
+                        color: #DDD;
+                        font-size: 14px;
+                        .total {
+                            font-size: 12px;
+                            color: rgba(255, 255, 255, 0.2)
+                        }
+                    }
+                }
+                .progress {
+                    height: 1px;
+                    background-color: #333;
+                    .front {
+                        background-color: #3498DB;
+                        height: 100%;
+                        width: 50%;
+                        position: relative;
+                        &:after {
+                            @size: 15;
+                            width: unit(@size, px);
+                            height: unit(@size, px);
+                            .border-radius(100%);
+                            background-color: #FFF;
+                            position: absolute;
+                            left: 100%;
+                            top: 50%;
+                            margin-left: unit(@size/2*-1, px);
+                            margin-top: unit(@size/2*-1, px);
+                            content: '';
+                        }
+                    }
+                }
+            }
+        }
+        .player-buttons {
+            .display(flex);
+            .align-items(center);
+            margin-right: 20px;
+            .button-item {
+                cursor: pointer;
+                color: #999;
+                margin: 0 10px;
+                &.play {
+                    color: #DDD;
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+    .main {
+        .display(flex);
+        .flex(1);
+        .panel {
+            .flex(1)
+        }
+        // Player Section
+        .reciters {
+            .display(flex);
+            background-color: #000;
+            border-right: 1px solid rgba(0, 0, 0, 0.2);
+            .reciters-list {
+                .flex(1);
+                // Reciter-item
+                .reciter-item {
+                    .transition(all 0.3s);
+                    background-color: rgb(6, 8, 9);
+                    margin-bottom: 1px;
+                    padding: 10px;
+                    cursor: pointer;
+                    .display(flex);
+                    &:first-child {
+                        padding-top: 15px;
+                    }
+                    .avatar {
+                        @size: 35;
+                        width: unit(@size, px);
+                        height: unit(@size, px);
+                        .background-size(cover);
+                        .border-radius(100%);
+                        border: 1px solid rgba(0, 0, 0, .4);
+                        background-position: center center;
+                    }
+                    .info {
+                        .flex(1);
+                        margin-left: 10px;
+                        .name {
+                            color: lighten(@recitersColor, 40%);
+                            .transition(all 0.3s);
+                        }
+                        .country {
+                            color: lighten(@recitersColor, 20%);
+                            .transition(all 0.3s);
+                            font-size: 12px;
+                        }
+                    }
+                    &:hover {
+                        background-color: darken(@recitersColor, 3%);
+                        .info {
+                            .name {
+                                color: lighten(@recitersColor, 80%);
+                            }
+                            .country {
+                                color: lighten(@recitersColor, 40%);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .playlist {
+            .display(flex);
+            background-color: darken(@recitersColor, 9%);
+            .tracks-list {
+                .flex(1);
+                .track-item {
+                    &:first-child {
+                        padding-top: 15px;
+                    }
+                    .display(flex);
+                    background-color: darken(@recitersColor, 6%);
+                    margin-bottom: 1px;
+                    padding: 10px;
+                    cursor: pointer;
+                    .transition(all 0.3s);
+                    .number {
+                        @size: 35;
+                        width: unit(@size, px);
+                        height: unit(@size, px);
+                        .border-radius(20px);
+                        border: 1px solid rgba(255, 255, 255, 0.6);
+                        color: rgba(255, 255, 255, 0.6);
+                        .display(flex);
+                        .align-items(center);
+                        .justify-content(center);
+                        font-size: 12px;
+                    }
+                    .info {
+                        .display(flex);
+                        .flex-direction(column);
+                        margin-left: 10px;
+                        .name {
+                            color: rgba(255, 255, 255, 0.6)
+                        }
+                        .time {
+                            font-size: 12px;
+                            color: rgba(255, 255, 255, 0.2)
+                        }
+                    }
+                    &:hover {
+                        background-color: darken(@recitersColor, 3%);
+                    }
+                }
+            }
+        }
+    }
+}

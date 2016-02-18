@@ -10,12 +10,13 @@
 
 <body>
     <div id="ZikrApp">
-        <div class="header">
+        <!-- <div class="header">
             <h2 class="logo">ZikrApp</h2>
-        </div>
+        </div> -->
         <!-- /.header -->
         <div class="main">
-            <div class="reciters">
+            <div class="panel reciters">
+                <div class="panel-label"><i class="fa fa-list"></i> Your Playlists</div>
                 <div class="reciters-list style-scroll">
                     <div class="reciter-item" v-for="reciter in reciters">
                         <div class="avatar" v-bind:style="{'background-image': 'url('+reciter.avatar+')'}"></div>
@@ -30,6 +31,7 @@
             </div>
             <!-- /.reciters -->
             <div class="panel playlist">
+                <div class="panel-label"><i class="fa fa-user"></i> Mashary Playlist</div>
                 <div class="tracks-list">
                     <div class="track-item" v-for="reciter in reciters">
                         <div class="number">001</div>
@@ -38,12 +40,45 @@
                             <div class="time">08:30 </div>
                         </div>
                         <div class="track-options">
-                            <div class="button-item play"><i class="fa fa-pause"></i></div>
+                            <div class="button-item download">
+                                <i class="fa fa-download"></i>
+                            </div>
+                            <div class="button-item add-to-playlist">
+                                <i class="fa fa-plus"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- /.playlist -->
+            <div class="panel custom-playlist">
+                <div class="panel-label"><i class="fa fa-plus"></i> New Playlist</div>
+                <div class="playlist-form">
+                    <div class="form-fields">
+                        <div class="field-item">
+                            <div class="field-input">
+                                <input placeholder="Enter Playlist Name Here ..." type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="playlist-content empty-state">
+                </div>
+            </div>
+            <!-- /.custom-playlist -->
+            <!-- <div class="panel custom-playlist">
+                <div class="panel-label"><i class="fa fa-user-plus"></i> New Request</div>
+                <div class="playlist-form">
+                    <div class="form-fields">
+                        <div class="field-item">
+                            <div class="field-input">
+                                <input placeholder="Playlist Name" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- /.custom-playlist -->
         </div>
         <!-- /.main -->
         <div class="player">

@@ -17,8 +17,8 @@
         <div class="main">
             <div class="panel reciters">
                 <div class="panel-label"><i class="fa fa-list"></i> Your Playlists</div>
-                <div class="reciters-list style-scroll">
-                    <div class="reciter-item" v-for="reciter in reciters">
+                <scrollbars>
+                    <div class="reciter-item" v-for="reciter in reciters | filterBy name in 'name'">
                         <div class="avatar" v-bind:style="{'background-image': 'url('+reciter.avatar+')'}"></div>
                         <div class="info">
                             <div class="name">{{ reciter.name_en }}</div>
@@ -26,13 +26,13 @@
                         </div>
                     </div>
                     <!-- /.reciter-item -->
-                </div>
-                <!-- /.reciters-list -->
+                </scrollbars>
+                <!-- /scrollbars -->
             </div>
             <!-- /.reciters -->
             <div class="panel playlist">
                 <div class="panel-label"><i class="fa fa-user"></i> Mashary Playlist</div>
-                <div class="tracks-list">
+                <scrollbars>
                     <div class="track-item" v-for="reciter in reciters">
                         <div class="number">001</div>
                         <div class="info">
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </scrollbars>
             </div>
             <!-- /.playlist -->
             <div class="panel custom-playlist">
